@@ -450,18 +450,35 @@
     </div>
 
 
-    <!-- Importa o arquivo externo de imagens em Base64 ANTES do script principal -->
-    <script src="images.js"></script>
-
     <script>
         // Inicializa Ícones
         lucide.createIcons();
 
         /* =====================================================================
+           BANCO DE IMAGENS BASE64
+           Cole as strings Base64 vazias abaixo entre as aspas duplas.
+           ===================================================================== */
+        const base64Images = {
+            logo: "", // Cole o Base64 da Logomarca aqui
+            santinho: "",       
+            cartao: "",         
+            colinha: "",        
+            jornal: "",         
+            perfurado: "",      
+            adesivo: "",        
+            pragao: "",         
+            praguinha: "",      
+            bandeira: "",       
+            windbanner: "",     
+            balcao: "",         
+            ventarola: ""       
+        };
+
+        /* =====================================================================
            CONFIGURAÇÃO DO GOOGLE SHEETS
            Cole a URL gerada pelo Google Apps Script aqui embaixo:
            ===================================================================== */
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec";
+        const GOOGLE_SHEETS_URL = "COLE_A_URL_DO_APP_SCRIPT_AQUI";
 
         /* =====================================================================
            BANCO DE DADOS DOS PRODUTOS (FALLBACK LOCAL)
@@ -624,13 +641,23 @@
         }
 
         function loadBase64Images() {
-            if (typeof base64Images === 'undefined') return;
+            if (typeof base64Images === 'undefined') {
+                console.error("Aviso: O arquivo images.js não carregou. Verifique se há algum erro de sintaxe (aspas/vírgulas faltando) dentro dele.");
+                return;
+            }
+
+            // Função inteligente para corrigir Base64 colado sem o prefixo 'data:image...'
+            function formatBase64(str) {
+                if (!str || str.trim() === "") return "";
+                if (str.startsWith("data:image") || str.startsWith("http")) return str;
+                return "data:image/jpeg;base64," + str.trim();
+            }
 
             // Logomarca principal
             if (base64Images.logo && base64Images.logo.trim() !== "") {
                 const logoContainer = document.getElementById('hero-logo');
                 if (logoContainer) {
-                    logoContainer.innerHTML = `<img src="${base64Images.logo}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
+                    logoContainer.innerHTML = `<img src="${formatBase64(base64Images.logo)}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
                 }
             }
 
@@ -639,7 +666,7 @@
                 if (key === 'logo') return;
                 const imgElement = document.getElementById(`img-${key}`);
                 if (imgElement && base64Images[key] && base64Images[key].trim() !== "") {
-                    imgElement.src = base64Images[key];
+                    imgElement.src = formatBase64(base64Images[key]);
                 }
             });
         }
@@ -661,9 +688,16 @@
             document.getElementById('detail-title').innerText = data.title;
             document.getElementById('detail-subtitle').innerText = data.subtitle;
             
+            // Função rápida para corrigir o formato da imagem nos detalhes
+            function formatBase64(str) {
+                if (!str || str.trim() === "") return "";
+                if (str.startsWith("data:image") || str.startsWith("http")) return str;
+                return "data:image/jpeg;base64," + str.trim();
+            }
+
             const detailImage = document.getElementById('detail-image');
             if (typeof base64Images !== 'undefined' && base64Images[productId] && base64Images[productId].trim() !== "") {
-                detailImage.src = base64Images[productId];
+                detailImage.src = formatBase64(base64Images[productId]);
             } else {
                 const homeImgElement = document.getElementById(`img-${productId}`);
                 detailImage.src = homeImgElement ? homeImgElement.src : 'https://placehold.co/600x600/f4f4f5/f26522?text=FOTO';

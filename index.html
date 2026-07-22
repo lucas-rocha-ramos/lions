@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion's Comunicação Visual - Eleições 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração do Tailwind com as cores da marca -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#F26522',
+                            dark: '#1a1a1a',
+                            light: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP para Animações -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #f4f4f5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .clip-path-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .clip-path-diagonal-reverse { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
+        
+        /* Animação suave de transição de telas */
+        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-dark antialiased">
+
+    <!-- ==========================================
+         VIEW PRINCIPAL (LANDING PAGE)
+         ========================================== -->
+    <div id="home-view">
+        
+        <header class="relative w-full h-screen flex flex-col justify-center items-center bg-brand-orange overflow-hidden clip-path-diagonal">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+            
+            <div id="hero-logo" class="z-10 mb-8 w-48 h-48 md:w-64 md:h-64">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full stroke-white" stroke-width="2">
+                    <path d="M50 10 L85 30 L95 60 L75 90 L50 95 L25 90 L5 60 L15 30 Z" stroke-linejoin="round"/>
+                    <path d="M50 10 L50 95" />
+                    <path d="M15 30 L85 30" />
+                    <path d="M5 60 L95 60" />
+                    <path d="M25 90 L75 90" />
+                    <path d="M30 45 L40 55 L50 45 L60 55 L70 45" />
+                    <circle cx="35" cy="45" r="3" fill="white" />
+                    <circle cx="65" cy="45" r="3" fill="white" />
+                </svg>
+            </div>
+
+            <div class="z-10 text-center px-4">
+                <h1 id="hero-title" class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-2">LION'S</h1>
+                <h2 id="hero-subtitle" class="text-2xl md:text-4xl font-bold text-white/90 tracking-widest mb-6">COMUNICAÇÃO VISUAL</h2>
+                <div id="hero-badge" class="inline-block bg-white text-brand-orange font-bold text-xl md:text-2xl px-6 py-2 rounded-full shadow-lg transform -rotate-2">
+                    ELEIÇÕES 2026
+                </div>
+            </div>
+
+            <div class="absolute bottom-12 z-10 animate-bounce text-white">
+                <i data-lucide="chevron-down" class="w-10 h-10 opacity-70"></i>
+            </div>
+        </header>
+
+        <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
+            <h3 class="text-3xl md:text-5xl font-bold mb-6 text-brand-dark" data-scroll="fade-up">Sua campanha merece o melhor.</h3>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">
+                Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura. Qualidade, rapidez e impacto visual para você chegar lá.
+            </p>
+        </section>
+
+        <section class="py-24 bg-white clip-path-diagonal-reverse relative z-10 -mt-10">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 pt-20">
+                
+                <div class="mb-16 border-l-4 border-brand-orange pl-4" data-scroll="fade-right">
+                    <h2 class="text-4xl font-black text-brand-dark uppercase">Materiais de Campanha</h2>
+                    <p class="text-gray-500 mt-2">Clique no produto para ver detalhes e especificações.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Santinho -->
+                    <div onclick="openProduct('santinho')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up">
+                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
+                            <img id="img-santinho" src="https://placehold.co/400x533/f4f4f5/f26522?text=SANTINHO" alt="Santinho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Santinho</h4>
+                        <p class="text-sm text-gray-600">Ver detalhes →</p>
+                    </div>
+
+                    <!-- Cartão de Visita -->
+                    <div onclick="openProduct('cartao')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.1">
+                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
+                            <img id="img-cartao" src="https://placehold.co/400x533/f4f4f5/f26522?text=CARTAO+DE+VISITA" alt="Cartão de Visita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Cartão de Visita</h4>
+                        <p class="text-sm text-gray-600">Ver detalhes →</p>
+                    </div>
+
+                    <!-- Colinha -->
+                    <div onclick="openProduct('colinha')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.2">
+                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
+                            <img id="img-colinha" src="https://placehold.co/400x533/f4f4f5/f26522?text=COLINHA" alt="Colinha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Colinha</h4>
+                        <p class="text-sm text-gray-600">Ver detalhes →</p>
+                    </div>
+
+                    <!-- Jornal Informativo -->
+                    <div onclick="openProduct('jornal')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.3">
+                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
+                            <img id="img-jornal" src="https://placehold.co/400x533/f4f4f5/f26522?text=JORNAL" alt="Jornal Informativo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Jornal Informativo</h4>
+                        <p class="text-sm text-gray-600">Ver detalhes →</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-brand-dark text-white relative">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                
+                <div class="mb-16 border-l-4 border-brand-orange pl-4 text-right ml-auto flex flex-col items-end" data-scroll="fade-left">
+                    <h2 class="text-4xl font-black text-white uppercase">Adesivos & Visibilidade</h2>
+                    <p class="text-gray-400 mt-2">Clique para ver formatos e materiais.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Perfurado -->
+                    <div onclick="openProduct('perfurado')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up">
+                        <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
+                             <img id="img-perfurado" src="https://placehold.co/600x300/1f2937/f26522?text=PARACHOQUE+PERFURADO" alt="Parachoque Perfurado" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
+                                <i data-lucide="car"></i>
+                                <h4 class="text-2xl font-bold">Parachoque Perfurado</h4>
+                            </div>
+                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
+                        </div>
+                    </div>
+
+                    <!-- Adesivo -->
+                    <div onclick="openProduct('adesivo')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up" data-delay="0.1">
+                        <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
+                             <img id="img-adesivo" src="https://placehold.co/600x300/1f2937/f26522?text=ADESIVO" alt="Adesivo" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
+                                <i data-lucide="sticker"></i>
+                                <h4 class="text-2xl font-bold">Adesivos Diversos</h4>
+                            </div>
+                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
+                        </div>
+                    </div>
+
+                    <!-- Pragão e Praguinha -->
+                    <div onclick="openProduct('pragao')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up" data-delay="0.2">
+                        <div class="h-48 w-full bg-gray-700 relative flex gap-2 p-4">
+                             <img id="img-pragao" src="https://placehold.co/300x300/1f2937/f26522?text=PRAGÃO" alt="Pragão" class="w-1/2 h-full object-cover rounded-xl border-2 border-transparent group-hover:border-brand-orange transition-colors">
+                             <img id="img-praguinha" src="https://placehold.co/300x300/1f2937/f26522?text=PRAGUINHA" alt="Praguinha" class="w-1/2 h-full object-cover rounded-xl border-2 border-transparent group-hover:border-brand-orange transition-colors">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
+                                <i data-lucide="award"></i>
+                                <h4 class="text-2xl font-bold">Pragão & Praguinha</h4>
+                            </div>
+                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-gray-100 overflow-hidden relative">
+            <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-orange opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-brand-dark opacity-5 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+                
+                <div class="text-center mb-20" data-scroll="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase inline-block relative">
+                        Grandes Formatos
+                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brand-orange"></div>
+                    </h2>
+                    <p class="text-gray-500 mt-6">Selecione o material desejado para consultar medidas.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+                    
+                    <!-- Bandeiras -->
+                    <div onclick="openProduct('bandeira')" class="cursor-pointer w-full lg:w-1/3 text-center group" data-scroll="fade-right">
+                        <div class="relative w-full aspect-square mb-6 mx-auto bg-white rounded-full shadow-xl flex items-center justify-center p-8 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 ring-4 ring-transparent group-hover:ring-brand-orange">
+                            <img id="img-bandeira" src="https://placehold.co/400x400/fff/f26522?text=BANDEIRAS" alt="Bandeiras" class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform">
+                        </div>
+                        <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">Bandeiras</h3>
+                        <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
+                    </div>
+
+                    <!-- Wind Banner -->
+                    <div onclick="openProduct('windbanner')" class="cursor-pointer w-full lg:w-1/3 text-center group" data-scroll="fade-up" data-delay="0.2">
+                        <div class="relative w-full aspect-[3/4] mb-6 mx-auto bg-white rounded-3xl shadow-xl flex items-center justify-center p-4 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 border-4 border-transparent group-hover:border-brand-orange">
+                            <img id="img-windbanner" src="https://placehold.co/300x500/fff/f26522?text=WIND+BANNER" alt="Wind Banner" class="object-contain w-full h-full">
+                        </div>
+                        <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">Wind Banner</h3>
+                        <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
+                    </div>
+
+                    <!-- Balcão e Ventarola -->
+                    <div class="w-full lg:w-1/3 flex flex-col gap-8" data-scroll="fade-left">
+                        <div onclick="openProduct('balcao')" class="cursor-pointer bg-white rounded-2xl p-6 flex items-center gap-6 shadow-lg hover:shadow-2xl hover:border-brand-orange border-2 border-transparent transition-all group">
+                            <div class="w-24 h-24 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
+                                <img id="img-balcao" src="https://placehold.co/100x100/f4f4f5/f26522?text=BALCAO" alt="Balcão" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-brand-dark group-hover:text-brand-orange">Balcão Promocional</h4>
+                                <p class="text-sm text-gray-500 font-bold mt-1">Ver especificações →</p>
+                            </div>
+                        </div>
+                        <div onclick="openProduct('ventarola')" class="cursor-pointer bg-white rounded-2xl p-6 flex items-center gap-6 shadow-lg hover:shadow-2xl hover:border-brand-orange border-2 border-transparent transition-all group">
+                            <div class="w-24 h-24 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
+                                <img id="img-ventarola" src="https://placehold.co/100x100/f4f4f5/f26522?text=VENTAROLA" alt="Ventarola" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-brand-dark group-hover:text-brand-orange">Ventarolas</h4>
+                                <p class="text-sm text-gray-500 font-bold mt-1">Ver especificações →</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 bg-brand-orange text-white text-center px-6 clip-path-diagonal-reverse -mt-10 relative z-20">
+            <div class="max-w-4xl mx-auto pt-10">
+                <i data-lucide="printer" class="w-16 h-16 mx-auto mb-6 opacity-90"></i>
+                <h2 class="text-4xl md:text-6xl font-black mb-6 uppercase" data-scroll="scale-up">Pronto para imprimir sua vitória?</h2>
+                <p class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.</p>
+                
+                <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark text-white font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-800 transform hover:scale-105 transition-all shadow-2xl">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Falar com Consultor
+                </a>
+            </div>
+        </section>
+    </div> <!-- Fim da View Principal -->
+
+
+    <!-- ==========================================
+         VIEW DE DETALHE DO PRODUTO (Oculta por padrão)
+         ========================================== -->
+    <div id="product-view" class="hidden min-h-screen bg-gray-50 pt-10 pb-24 fade-in">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            
+            <!-- Botão Voltar -->
+            <button onclick="closeProduct()" class="group flex items-center gap-2 text-brand-dark font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md group-hover:-translate-x-1 transition-transform">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </div>
+                Voltar para a lista
+            </button>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                
+                <!-- Imagem do Produto -->
+                <div class="w-full md:w-1/2 bg-gray-100 flex items-center justify-center p-8 relative min-h-[300px]">
+                    <div class="absolute inset-0 bg-brand-orange opacity-5 pattern-dots"></div>
+                    <img id="detail-image" src="" alt="Produto" class="max-w-full max-h-[500px] object-contain relative z-10 drop-shadow-2xl rounded-xl">
+                </div>
+
+                <!-- Informações do Produto -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <div class="inline-block bg-brand-orange/10 text-brand-orange font-bold px-4 py-1 rounded-full text-sm mb-4 self-start">
+                        Material de Campanha
+                    </div>
+                    
+                    <h2 id="detail-title" class="text-4xl font-black text-brand-dark uppercase mb-2">Nome do Produto</h2>
+                    <p id="detail-subtitle" class="text-xl text-gray-500 mb-8 font-medium">Subtítulo atrativo.</p>
+
+                    <div class="space-y-6 flex-1">
+                        <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2 text-brand-dark">
+                            <i data-lucide="list-checks" class="text-brand-orange"></i>
+                            Especificações Técnicas
+                        </h3>
+                        
+                        <!-- Lista Dinâmica de Specs -->
+                        <ul id="detail-specs" class="space-y-4">
+                            <!-- Injetado via JS -->
+                        </ul>
+                    </div>
+
+                    <!-- CTA do Produto -->
+                    <div class="mt-10 pt-8 border-t">
+                        <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20um%20orçamento%20para..." id="detail-whatsapp" target="_blank" class="w-full flex items-center justify-center gap-3 bg-brand-orange text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-orange-600 transform hover:-translate-y-1 transition-all shadow-lg shadow-orange-500/30">
+                            <i data-lucide="message-square" class="w-6 h-6"></i>
+                            Solicitar Orçamento deste Material
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Fim da View de Detalhes -->
+
+
+    <!-- Footer Global -->
+    <footer class="bg-brand-dark text-gray-400 py-12 text-center pb-24 md:pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-center items-center gap-4 mb-6">
+                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 stroke-brand-orange" stroke-width="4">
+                    <path d="M50 10 L85 30 L95 60 L75 90 L50 95 L25 90 L5 60 L15 30 Z" stroke-linejoin="round"/>
+                    <path d="M50 10 L50 95" />
+                    <path d="M15 30 L85 30" />
+                    <path d="M5 60 L95 60" />
+                    <path d="M25 90 L75 90" />
+                </svg>
+                <span class="font-bold text-xl text-white tracking-widest">LION'S</span>
+            </div>
+            <p>&copy; 2026 Lion's Comunicação Visual. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp Global -->
+    <a href="https://wa.me/5500000000000" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+
+    <!-- Importa o arquivo externo de imagens em Base64 ANTES do script principal -->
+    <script src="images.js"></script>
+
+    <script>
+        // Inicializa Ícones
+        lucide.createIcons();
+
+        /* =====================================================================
+           BANCO DE DADOS DOS PRODUTOS
+           ===================================================================== */
+        const productsData = {
+            santinho: {
+                title: "Santinho",
+                subtitle: "O material mais tradicional e indispensável.",
+                specs: [
+                    { label: "Medidas Padrão", value: "7x10 cm ou 10x14 cm" },
+                    { label: "Material", value: "Papel Couché 90g, 115g ou 150g" },
+                    { label: "Cores", value: "4x4 (Colorido Frente e Verso) ou 4x0" },
+                    { label: "Acabamento", value: "Corte Reto" },
+                    { label: "Tiragem", value: "A partir de 5.000 unidades" }
+                ]
+            },
+            cartao: {
+                title: "Cartão de Visita",
+                subtitle: "Sua apresentação pessoal com qualidade.",
+                specs: [
+                    { label: "Medidas Padrão", value: "9x5 cm" },
+                    { label: "Material", value: "Couché 250g ou 300g" },
+                    { label: "Cores", value: "4x4 (Colorido Frente e Verso)" },
+                    { label: "Acabamento", value: "Verniz Total ou Verniz Localizado (UV)" },
+                    { label: "Tiragem", value: "A partir de 1.000 unidades" }
+                ]
+            },
+            colinha: {
+                title: "Colinha Eleitoral",
+                subtitle: "Facilite o voto do seu eleitor no dia da eleição.",
+                specs: [
+                    { label: "Medidas Padrão", value: "7x10 cm" },
+                    { label: "Material", value: "Papel Couché 90g" },
+                    { label: "Cores", value: "4x4 (Colorido Frente e Verso)" },
+                    { label: "Layout", value: "Espaço para preenchimento de números" }
+                ]
+            },
+            jornal: {
+                title: "Jornal Informativo",
+                subtitle: "Ideal para detalhar plano de governo e realizações.",
+                specs: [
+                    { label: "Formato", value: "Fechado A4 / Aberto A3 (4 Páginas)" },
+                    { label: "Material", value: "Papel Jornal 45g ou Couché LWC 60g" },
+                    { label: "Cores", value: "Impressão Rotativa Colorida" },
+                    { label: "Acabamento", value: "Dobra central" }
+                ]
+            },
+            perfurado: {
+                title: "Parachoque Perfurado",
+                subtitle: "Divulgação móvel sem comprometer a visibilidade.",
+                specs: [
+                    { label: "Tamanho Padrão", value: "130x50 cm (Adaptável conforme veículo)" },
+                    { label: "Material", value: "Adesivo Vinil Perfurado (Película homologada)" },
+                    { label: "Resolução", value: "Alta Definição (1440 dpi)" },
+                    { label: "Legislação", value: "Adequado às normas de trânsito vigentes" }
+                ]
+            },
+            adesivo: {
+                title: "Adesivos Diversos",
+                subtitle: "Para carros, motos, cadernos e janelas.",
+                specs: [
+                    { label: "Formatos", value: "10x15 cm, 30x10 cm, ou tamanhos personalizados" },
+                    { label: "Material", value: "Vinil Adesivo Brilho ou Fosco (Resistente à água)" },
+                    { label: "Acabamento", value: "Corte Reto ou Meio-corte Eletrônico" },
+                    { label: "Durabilidade", value: "Alta resistência a sol e chuva" }
+                ]
+            },
+            pragao: {
+                title: "Pragão & Praguinha",
+                subtitle: "Identificação rápida de apoiadores e cabos eleitorais.",
+                specs: [
+                    { label: "Tamanhos", value: "Praguinha (5cm redonda) / Pragão (7cm redondo)" },
+                    { label: "Material", value: "Papel Adesivo Fotográfico ou Vinil" },
+                    { label: "Corte", value: "Corte e vinco redondo (Cartela)" },
+                    { label: "Uso", value: "Ideal para fixação em roupas e tecidos leves" }
+                ]
+            },
+            bandeira: {
+                title: "Bandeiras",
+                subtitle: "Destaque e volume para sua militância nas ruas.",
+                specs: [
+                    { label: "Tamanhos Comuns", value: "100x70 cm ou 150x100 cm" },
+                    { label: "Material", value: "Tecido Oxford ou Bember" },
+                    { label: "Impressão", value: "Sublimação de alta qualidade (1 lado com transparência no verso)" },
+                    { label: "Acabamento", value: "Costura de reforço e bainha para mastro" }
+                ]
+            },
+            windbanner: {
+                title: "Wind Banner",
+                subtitle: "Comunicação visual dinâmica para pontos fixos.",
+                specs: [
+                    { label: "Tamanhos", value: "2 metros, 2.5 metros ou 3 metros" },
+                    { label: "Estrutura", value: "Haste de fibra de vidro ou alumínio e base plástica (água/areia)" },
+                    { label: "Tecido", value: "Tecido Oxford Sublimado dupla face" },
+                    { label: "Formatos", value: "Pena, Gota ou Faca" }
+                ]
+            },
+            balcao: {
+                title: "Balcão Promocional",
+                subtitle: "Ponto de apoio móvel para distribuição de material.",
+                specs: [
+                    { label: "Material", value: "Estrutura em PVC ou PS (Poliestireno)" },
+                    { label: "Personalização", value: "Adesivação frontal, laterais e testeira superior" },
+                    { label: "Montagem", value: "Fácil montagem (encaixes rápidos), acompanha bolsa de transporte" },
+                    { label: "Capacidade", value: "Suporta pequenos volumes e materiais gráficos" }
+                ]
+            },
+            ventarola: {
+                title: "Ventarola",
+                subtitle: "O brinde útil e refrescante para dias quentes.",
+                specs: [
+                    { label: "Tamanho", value: "Aproximadamente 20x25 cm (formato padrão com cabo)" },
+                    { label: "Material", value: "Papel Triplex 250g ou 300g" },
+                    { label: "Impressão", value: "4x4 Cores (Frente e Verso)" },
+                    { label: "Acabamento", value: "Furo central para segurar (estilo leque)" }
+                ]
+            }
+        };
+
+        /* =====================================================================
+           LÓGICA PARA INJETAR IMAGENS BASE64 (DO ARQUIVO EXTERNO)
+           ===================================================================== */
+        // Função para injetar imagens na HOME e Logomarca
+        function loadBase64Images() {
+            // Verifica se o arquivo images.js foi carregado corretamente
+            if (typeof base64Images === 'undefined') {
+                console.warn("Arquivo images.js não carregado. Exibindo imagens de placeholder.");
+                return;
+            }
+
+            // 1. Injeta a logomarca principal se ela existir no arquivo images.js
+            if (base64Images.logo && base64Images.logo.trim() !== "") {
+                const logoContainer = document.getElementById('hero-logo');
+                if (logoContainer) {
+                    // Substitui o SVG padrão pela imagem carregada
+                    logoContainer.innerHTML = `<img src="${base64Images.logo}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
+                }
+            }
+
+            // 2. Injeta as imagens dos produtos
+            Object.keys(base64Images).forEach(key => {
+                if (key === 'logo') return; // Pula a logo pois já foi tratada acima
+
+                const imgElement = document.getElementById(`img-${key}`);
+                if (imgElement && base64Images[key] && base64Images[key].trim() !== "") {
+                    imgElement.src = base64Images[key];
+                }
+            });
+        }
+        
+        loadBase64Images();
+
+        /* =====================================================================
+           LÓGICA DA SINGLE PAGE APPLICATION (SPA) - TROCA DE TELAS
+           ===================================================================== */
+        const homeView = document.getElementById('home-view');
+        const productView = document.getElementById('product-view');
+        const NUMERO_WHATSAPP = "5500000000000"; // Altere aqui o número geral
+
+        function openProduct(productId) {
+            const data = productsData[productId];
+            if (!data) return;
+
+            // 1. Preencher os dados na tela de detalhes
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-subtitle').innerText = data.subtitle;
+            
+            // 2. Preencher Imagem (usa o Base64 se existir, ou pega a imagem gerada na Home por fallback)
+            const detailImage = document.getElementById('detail-image');
+            if (base64Images[productId] && base64Images[productId].trim() !== "") {
+                detailImage.src = base64Images[productId];
+            } else {
+                // Tenta pegar a imagem do card na home (se Pragão, pega a primeira)
+                const homeImgElement = document.getElementById(`img-${productId}`);
+                detailImage.src = homeImgElement ? homeImgElement.src : 'https://placehold.co/600x600/f4f4f5/f26522?text=FOTO';
+            }
+
+            // 3. Gerar a lista de especificações
+            const specsContainer = document.getElementById('detail-specs');
+            specsContainer.innerHTML = ''; // Limpa as antigas
+            
+            data.specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.className = "flex items-start gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100";
+                li.innerHTML = `
+                    <i data-lucide="check-circle-2" class="text-green-500 w-5 h-5 mt-0.5 flex-shrink-0"></i>
+                    <div>
+                        <span class="block font-bold text-brand-dark text-sm">${spec.label}</span>
+                        <span class="text-gray-600 text-sm">${spec.value}</span>
+                    </div>
+                `;
+                specsContainer.appendChild(li);
+            });
+
+            // Re-renderizar ícones injetados via JS
+            lucide.createIcons();
+
+            // 4. Configurar Link do WhatsApp com mensagem pré-preenchida
+            const msg = encodeURIComponent(`Olá! Gostaria de fazer um orçamento para: *${data.title}*. Pode me ajudar?`);
+            document.getElementById('detail-whatsapp').href = `https://wa.me/${NUMERO_WHATSAPP}?text=${msg}`;
+
+            // 5. Ocultar Home e Mostrar Detalhes
+            homeView.classList.add('hidden');
+            productView.classList.remove('hidden');
+            
+            // 6. Rolar para o topo da página suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeProduct() {
+            // Ocultar Detalhes e Mostrar Home
+            productView.classList.add('hidden');
+            homeView.classList.remove('hidden');
+            
+            // Reativar os triggers de scroll que podem ter se perdido ao ocultar a div
+            ScrollTrigger.refresh();
+        }
+
+
+        /* =====================================================================
+           ANIMAÇÕES GSAP & SCROLLTRIGGER (LANDING PAGE)
+           ===================================================================== */
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tlHero = gsap.timeline();
+        tlHero.fromTo("#hero-logo", { y: -50, opacity: 0, scale: 0.5 }, { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" })
+              .fromTo("#hero-title", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
+              .fromTo("#hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
+              .fromTo("#hero-badge", { scale: 0, rotation: 0 }, { scale: 1, rotation: -2, duration: 0.6, ease: "back.out(2)" }, "-=0.2");
+
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        scrollElements.forEach((el) => {
+            const effect = el.getAttribute('data-scroll');
+            const delay = parseFloat(el.getAttribute('data-delay') || 0);
+
+            let fromVars = { opacity: 0 };
+            let toVars = { 
+                opacity: 1, 
+                duration: 0.8, 
+                delay: delay,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            };
+
+            switch(effect) {
+                case 'fade-up': fromVars.y = 60; toVars.y = 0; break;
+                case 'fade-right': fromVars.x = -60; toVars.x = 0; break;
+                case 'fade-left': fromVars.x = 60; toVars.x = 0; break;
+                case 'scale-up': fromVars.scale = 0.8; toVars.scale = 1; break;
+            }
+
+            gsap.fromTo(el, fromVars, toVars);
+        });
+
+    </script>
+</body>
+</html>

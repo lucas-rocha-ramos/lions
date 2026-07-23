@@ -239,17 +239,17 @@
             </div>
             
             <!-- Abas do Admin -->
-            <div class="flex gap-2 mb-4 border-b">
-                <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange" data-tab="produtos">
+            <div class="flex gap-2 mb-4 border-b overflow-x-auto">
+                <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap" data-tab="produtos">
                     <i data-lucide="package" class="w-4 h-4 inline"></i> Produtos
                 </button>
-                <button onclick="showAdminTab('config')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="config">
+                <button onclick="showAdminTab('config')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="config">
                     <i data-lucide="settings" class="w-4 h-4 inline"></i> Configurações
                 </button>
-                <button onclick="showAdminTab('cores')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="cores">
+                <button onclick="showAdminTab('cores')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="cores">
                     <i data-lucide="palette" class="w-4 h-4 inline"></i> Cores
                 </button>
-                <button onclick="showAdminTab('textos')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="textos">
+                <button onclick="showAdminTab('textos')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="textos">
                     <i data-lucide="type" class="w-4 h-4 inline"></i> Textos
                 </button>
             </div>
@@ -264,7 +264,7 @@
         // =============================================
         // CONFIGURAÇÃO
         // =============================================
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec";
+        const GOOGLE_SHEETS_URL = "COLE_A_URL_DO_APP_SCRIPT_AQUI";
         const SENHA_ADMIN = "lions2026";
 
         // =============================================
@@ -282,7 +282,7 @@
         // CARREGAR DADOS DA PLANILHA
         // =============================================
         async function loadData() {
-            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
+            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec") {
                 console.warn("Configure a GOOGLE_SHEETS_URL");
                 return;
             }
@@ -933,13 +933,13 @@
         }
 
         // =============================================
-        // ADMIN - CONFIGURAÇÕES
+        // ADMIN - CONFIGURAÇÕES (CORRIGIDO)
         // =============================================
         function renderAdminConfig() {
             const content = document.getElementById('admin-content');
             
             const configFields = [
-                { key: 'logo', label: 'Logo (URL ou Base64)', type: 'text' },
+                { key: 'logo', label: 'Logo (Base64 - cole o código completo)', type: 'textarea' },
                 { key: 'nome_empresa', label: 'Nome da Empresa', type: 'text' },
                 { key: 'whatsapp', label: 'WhatsApp (código + número)', type: 'text' },
                 { key: 'whatsapp_link', label: 'Link do WhatsApp', type: 'text' },
@@ -975,13 +975,21 @@
 
             configFields.forEach(field => {
                 const value = configs[field.key] || '';
+                // Para o campo logo, mostrar uma prévia da imagem se existir
+                let preview = '';
+                if (field.key === 'logo' && value && value.startsWith('data:image')) {
+                    preview = `<img src="${value}" class="w-24 h-24 object-contain rounded-lg border mb-2 bg-gray-100">`;
+                }
+                
                 html += `
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
+                        ${preview}
                         ${field.type === 'textarea' 
-                            ? `<textarea id="cfg-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
+                            ? `<textarea id="cfg-${field.key}" rows="${field.key === 'logo' ? '6' : '3'}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange font-mono text-sm">${value}</textarea>`
                             : `<input type="text" id="cfg-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
                         }
+                        ${field.key === 'logo' ? `<p class="text-xs text-gray-400 mt-1">⚠️ Cole o código Base64 completo da imagem (começa com "data:image/...")</p>` : ''}
                     </div>
                 `;
             });
@@ -1192,35 +1200,6 @@
                 showToast('Erro ao salvar textos.', true);
             }
         }
-
-        // =============================================
-        // FUNÇÃO DE DELETAR PRODUTO (no code.gs)
-        // =============================================
-        // Adicionar no code.gs:
-        /*
-        if (action === "deleteProduct") {
-          const productId = requestData.productId;
-          const data = dbs.sheetProdutos.getDataRange().getValues();
-          let rowIndex = -1;
-          for(let i = 1; i < data.length; i++) {
-            if(data[i][0] === productId) {
-              rowIndex = i + 1;
-              break;
-            }
-          }
-          if (rowIndex > -1) {
-            dbs.sheetProdutos.deleteRow(rowIndex);
-            return ContentService.createTextOutput(JSON.stringify({
-              success: true, 
-              message: "Produto excluído com sucesso!"
-            })).setMimeType(ContentService.MimeType.JSON);
-          }
-          return ContentService.createTextOutput(JSON.stringify({
-            success: false, 
-            message: "Produto não encontrado."
-          })).setMimeType(ContentService.MimeType.JSON);
-        }
-        */
 
         // =============================================
         // INICIALIZAÇÃO

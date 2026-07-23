@@ -3,30 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lion's Comunicação Visual - Eleições 2026</title>
+    <title id="site-title">Lion's Comunicação Visual - Eleições 2026</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuração do Tailwind com as cores da marca -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            orange: '#F26522',
-                            dark: '#1a1a1a',
-                            light: '#f4f4f5'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -40,7 +20,6 @@
 
     <style>
         body {
-            background-color: #f4f4f5;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -49,643 +28,556 @@
         .clip-path-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
         .clip-path-diagonal-reverse { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
         
-        /* Animação suave de transição de telas */
         .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Estilos dinâmicos serão injetados via JS */
     </style>
 </head>
-<body class="font-sans text-brand-dark antialiased">
+<body class="font-sans antialiased" id="app-body">
 
     <!-- ==========================================
          VIEW PRINCIPAL (LANDING PAGE)
          ========================================== -->
     <div id="home-view">
         
-        <header class="relative w-full h-screen flex flex-col justify-center items-center bg-brand-orange overflow-hidden clip-path-diagonal">
+        <header id="hero-header" class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden clip-path-diagonal">
             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
             
             <div id="hero-logo" class="z-10 mb-8 w-48 h-48 md:w-64 md:h-64">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full stroke-white" stroke-width="2">
-                    <path d="M50 10 L85 30 L95 60 L75 90 L50 95 L25 90 L5 60 L15 30 Z" stroke-linejoin="round"/>
-                    <path d="M50 10 L50 95" />
-                    <path d="M15 30 L85 30" />
-                    <path d="M5 60 L95 60" />
-                    <path d="M25 90 L75 90" />
-                    <path d="M30 45 L40 55 L50 45 L60 55 L70 45" />
-                    <circle cx="35" cy="45" r="3" fill="white" />
-                    <circle cx="65" cy="45" r="3" fill="white" />
-                </svg>
+                <!-- Logo será injetado via JS -->
             </div>
 
             <div class="z-10 text-center px-4">
-                <h1 id="hero-title" class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-2">LION'S</h1>
-                <h2 id="hero-subtitle" class="text-2xl md:text-4xl font-bold text-white/90 tracking-widest mb-6">COMUNICAÇÃO VISUAL</h2>
-                <div id="hero-badge" class="inline-block bg-white text-brand-orange font-bold text-xl md:text-2xl px-6 py-2 rounded-full shadow-lg transform -rotate-2">
+                <h1 id="hero-title" class="text-5xl md:text-7xl font-black tracking-tighter mb-2">LION'S</h1>
+                <h2 id="hero-subtitle" class="text-2xl md:text-4xl font-bold tracking-widest mb-6">COMUNICAÇÃO VISUAL</h2>
+                <div id="hero-badge" class="inline-block font-bold text-xl md:text-2xl px-6 py-2 rounded-full shadow-lg transform -rotate-2">
                     ELEIÇÕES 2026
                 </div>
             </div>
 
-            <div class="absolute bottom-12 z-10 animate-bounce text-white">
+            <div class="absolute bottom-12 z-10 animate-bounce">
                 <i data-lucide="chevron-down" class="w-10 h-10 opacity-70"></i>
             </div>
         </header>
 
-        <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
-            <h3 class="text-3xl md:text-5xl font-bold mb-6 text-brand-dark" data-scroll="fade-up">Sua campanha merece o melhor.</h3>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">
+        <!-- Seção 1: Texto de introdução -->
+        <section id="secao1" class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
+            <h3 id="secao1-titulo" class="text-3xl md:text-5xl font-bold mb-6" data-scroll="fade-up">Sua campanha merece o melhor.</h3>
+            <p id="secao1-texto" class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">
                 Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura. Qualidade, rapidez e impacto visual para você chegar lá.
             </p>
         </section>
 
-        <section class="py-24 bg-white clip-path-diagonal-reverse relative z-10 -mt-10">
+        <!-- Seção 2: Materiais de Campanha -->
+        <section id="secao-materiais" class="py-24 bg-white clip-path-diagonal-reverse relative z-10 -mt-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 pt-20">
                 
                 <div class="mb-16 border-l-4 border-brand-orange pl-4" data-scroll="fade-right">
-                    <h2 class="text-4xl font-black text-brand-dark uppercase">Materiais de Campanha</h2>
-                    <p class="text-gray-500 mt-2">Clique no produto para ver detalhes e especificações.</p>
+                    <h2 id="titulo-materiais" class="text-4xl font-black uppercase">Materiais de Campanha</h2>
+                    <p id="subtitulo-materiais" class="text-gray-500 mt-2">Clique no produto para ver detalhes e especificações.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Santinho -->
-                    <div onclick="openProduct('santinho')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up">
-                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
-                            <img id="img-santinho" src="https://placehold.co/400x533/f4f4f5/f26522?text=SANTINHO" alt="Santinho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Santinho</h4>
-                        <p class="text-sm text-gray-600">Ver detalhes →</p>
-                    </div>
-
-                    <!-- Cartão de Visita -->
-                    <div onclick="openProduct('cartao')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.1">
-                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
-                            <img id="img-cartao" src="https://placehold.co/400x533/f4f4f5/f26522?text=CARTAO+DE+VISITA" alt="Cartão de Visita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Cartão de Visita</h4>
-                        <p class="text-sm text-gray-600">Ver detalhes →</p>
-                    </div>
-
-                    <!-- Colinha -->
-                    <div onclick="openProduct('colinha')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.2">
-                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
-                            <img id="img-colinha" src="https://placehold.co/400x533/f4f4f5/f26522?text=COLINHA" alt="Colinha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Colinha</h4>
-                        <p class="text-sm text-gray-600">Ver detalhes →</p>
-                    </div>
-
-                    <!-- Jornal Informativo -->
-                    <div onclick="openProduct('jornal')" class="product-card cursor-pointer group relative bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100" data-scroll="fade-up" data-delay="0.3">
-                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
-                            <img id="img-jornal" src="https://placehold.co/400x533/f4f4f5/f26522?text=JORNAL" alt="Jornal Informativo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">Jornal Informativo</h4>
-                        <p class="text-sm text-gray-600">Ver detalhes →</p>
-                    </div>
+                <div id="grid-materiais" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Produtos serão injetados via JS -->
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-brand-dark text-white relative">
+        <!-- Seção 3: Adesivos & Visibilidade -->
+        <section id="secao-adesivos" class="py-24 bg-brand-dark text-white relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 
                 <div class="mb-16 border-l-4 border-brand-orange pl-4 text-right ml-auto flex flex-col items-end" data-scroll="fade-left">
-                    <h2 class="text-4xl font-black text-white uppercase">Adesivos & Visibilidade</h2>
-                    <p class="text-gray-400 mt-2">Clique para ver formatos e materiais.</p>
+                    <h2 id="titulo-adesivos" class="text-4xl font-black text-white uppercase">Adesivos & Visibilidade</h2>
+                    <p id="subtitulo-adesivos" class="text-gray-400 mt-2">Clique para ver formatos e materiais.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    
-                    <!-- Perfurado -->
-                    <div onclick="openProduct('perfurado')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up">
-                        <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
-                             <img id="img-perfurado" src="https://placehold.co/600x300/1f2937/f26522?text=PARACHOQUE+PERFURADO" alt="Parachoque Perfurado" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-center">
-                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
-                                <i data-lucide="car"></i>
-                                <h4 class="text-2xl font-bold">Parachoque Perfurado</h4>
-                            </div>
-                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
-                        </div>
-                    </div>
-
-                    <!-- Adesivo -->
-                    <div onclick="openProduct('adesivo')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up" data-delay="0.1">
-                        <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
-                             <img id="img-adesivo" src="https://placehold.co/600x300/1f2937/f26522?text=ADESIVO" alt="Adesivo" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-center">
-                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
-                                <i data-lucide="sticker"></i>
-                                <h4 class="text-2xl font-bold">Adesivos Diversos</h4>
-                            </div>
-                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
-                        </div>
-                    </div>
-
-                    <!-- Pragão e Praguinha -->
-                    <div onclick="openProduct('pragao')" class="cursor-pointer group bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300" data-scroll="scale-up" data-delay="0.2">
-                        <div class="h-48 w-full bg-gray-700 relative flex gap-2 p-4">
-                             <img id="img-pragao" src="https://placehold.co/300x300/1f2937/f26522?text=PRAGÃO" alt="Pragão" class="w-1/2 h-full object-cover rounded-xl border-2 border-transparent group-hover:border-brand-orange transition-colors">
-                             <img id="img-praguinha" src="https://placehold.co/300x300/1f2937/f26522?text=PRAGUINHA" alt="Praguinha" class="w-1/2 h-full object-cover rounded-xl border-2 border-transparent group-hover:border-brand-orange transition-colors">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-center">
-                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
-                                <i data-lucide="award"></i>
-                                <h4 class="text-2xl font-bold">Pragão & Praguinha</h4>
-                            </div>
-                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
-                        </div>
-                    </div>
-
+                <div id="grid-adesivos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Produtos serão injetados via JS -->
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-gray-100 overflow-hidden relative">
+        <!-- Seção 4: Grandes Formatos -->
+        <section id="secao-grandes-formatos" class="py-24 bg-gray-100 overflow-hidden relative">
             <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-orange opacity-10 rounded-full blur-3xl"></div>
             <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-brand-dark opacity-5 rounded-full blur-3xl"></div>
 
             <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
                 
                 <div class="text-center mb-20" data-scroll="fade-up">
-                    <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase inline-block relative">
+                    <h2 id="titulo-grandes-formatos" class="text-4xl md:text-5xl font-black uppercase inline-block relative">
                         Grandes Formatos
                         <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brand-orange"></div>
                     </h2>
-                    <p class="text-gray-500 mt-6">Selecione o material desejado para consultar medidas.</p>
+                    <p id="subtitulo-grandes-formatos" class="text-gray-500 mt-6">Selecione o material desejado para consultar medidas.</p>
                 </div>
 
-                <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-                    
-                    <!-- Bandeiras -->
-                    <div onclick="openProduct('bandeira')" class="cursor-pointer w-full lg:w-1/3 text-center group" data-scroll="fade-right">
-                        <div class="relative w-full aspect-square mb-6 mx-auto bg-white rounded-full shadow-xl flex items-center justify-center p-8 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 ring-4 ring-transparent group-hover:ring-brand-orange">
-                            <img id="img-bandeira" src="https://placehold.co/400x400/fff/f26522?text=BANDEIRAS" alt="Bandeiras" class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform">
-                        </div>
-                        <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">Bandeiras</h3>
-                        <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
-                    </div>
-
-                    <!-- Wind Banner -->
-                    <div onclick="openProduct('windbanner')" class="cursor-pointer w-full lg:w-1/3 text-center group" data-scroll="fade-up" data-delay="0.2">
-                        <div class="relative w-full aspect-[3/4] mb-6 mx-auto bg-white rounded-3xl shadow-xl flex items-center justify-center p-4 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 border-4 border-transparent group-hover:border-brand-orange">
-                            <img id="img-windbanner" src="https://placehold.co/300x500/fff/f26522?text=WIND+BANNER" alt="Wind Banner" class="object-contain w-full h-full">
-                        </div>
-                        <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">Wind Banner</h3>
-                        <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
-                    </div>
-
-                    <!-- Balcão e Ventarola -->
-                    <div class="w-full lg:w-1/3 flex flex-col gap-8" data-scroll="fade-left">
-                        <div onclick="openProduct('balcao')" class="cursor-pointer bg-white rounded-2xl p-6 flex items-center gap-6 shadow-lg hover:shadow-2xl hover:border-brand-orange border-2 border-transparent transition-all group">
-                            <div class="w-24 h-24 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
-                                <img id="img-balcao" src="https://placehold.co/100x100/f4f4f5/f26522?text=BALCAO" alt="Balcão" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-brand-dark group-hover:text-brand-orange">Balcão Promocional</h4>
-                                <p class="text-sm text-gray-500 font-bold mt-1">Ver especificações →</p>
-                            </div>
-                        </div>
-                        <div onclick="openProduct('ventarola')" class="cursor-pointer bg-white rounded-2xl p-6 flex items-center gap-6 shadow-lg hover:shadow-2xl hover:border-brand-orange border-2 border-transparent transition-all group">
-                            <div class="w-24 h-24 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
-                                <img id="img-ventarola" src="https://placehold.co/100x100/f4f4f5/f26522?text=VENTAROLA" alt="Ventarola" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-brand-dark group-hover:text-brand-orange">Ventarolas</h4>
-                                <p class="text-sm text-gray-500 font-bold mt-1">Ver especificações →</p>
-                            </div>
-                        </div>
-                    </div>
-
+                <div id="grid-grandes-formatos" class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+                    <!-- Produtos serão injetados via JS -->
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="py-24 bg-brand-orange text-white text-center px-6 clip-path-diagonal-reverse -mt-10 relative z-20">
+        <section id="secao-cta" class="py-24 bg-brand-orange text-white text-center px-6 clip-path-diagonal-reverse -mt-10 relative z-20">
             <div class="max-w-4xl mx-auto pt-10">
                 <i data-lucide="printer" class="w-16 h-16 mx-auto mb-6 opacity-90"></i>
-                <h2 class="text-4xl md:text-6xl font-black mb-6 uppercase" data-scroll="scale-up">Pronto para imprimir sua vitória?</h2>
-                <p class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.</p>
+                <h2 id="cta-titulo" class="text-4xl md:text-6xl font-black mb-6 uppercase" data-scroll="scale-up">Pronto para imprimir sua vitória?</h2>
+                <p id="cta-texto" class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.</p>
                 
-                <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark text-white font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-800 transform hover:scale-105 transition-all shadow-2xl">
+                <a id="cta-botao" href="#" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark text-white font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-800 transform hover:scale-105 transition-all shadow-2xl">
                     <i data-lucide="message-circle" class="w-6 h-6"></i>
                     Falar com Consultor
                 </a>
             </div>
         </section>
-    </div> <!-- Fim da View Principal -->
-
+    </div>
 
     <!-- ==========================================
-         VIEW DE DETALHE DO PRODUTO (Oculta por padrão)
+         VIEW DE DETALHE DO PRODUTO
          ========================================== -->
     <div id="product-view" class="hidden min-h-screen bg-gray-50 pt-10 pb-24 fade-in">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             
-            <!-- Botão Voltar -->
-            <button onclick="closeProduct()" class="group flex items-center gap-2 text-brand-dark font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
+            <button onclick="closeProduct()" class="group flex items-center gap-2 font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md group-hover:-translate-x-1 transition-transform">
                     <i data-lucide="arrow-left" class="w-5 h-5"></i>
                 </div>
-                Voltar para a lista
+                <span id="texto-voltar">Voltar para a lista</span>
             </button>
 
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
                 
-                <!-- Imagem do Produto -->
                 <div class="w-full md:w-1/2 bg-gray-100 flex items-center justify-center p-8 relative min-h-[300px]">
-                    <div class="absolute inset-0 bg-brand-orange opacity-5 pattern-dots"></div>
+                    <div class="absolute inset-0 bg-brand-orange opacity-5"></div>
                     <img id="detail-image" src="" alt="Produto" class="max-w-full max-h-[500px] object-contain relative z-10 drop-shadow-2xl rounded-xl">
                 </div>
 
-                <!-- Informações do Produto -->
                 <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                     <div class="inline-block bg-brand-orange/10 text-brand-orange font-bold px-4 py-1 rounded-full text-sm mb-4 self-start">
                         Material de Campanha
                     </div>
                     
-                    <h2 id="detail-title" class="text-4xl font-black text-brand-dark uppercase mb-2">Nome do Produto</h2>
+                    <h2 id="detail-title" class="text-4xl font-black uppercase mb-2">Nome do Produto</h2>
                     <p id="detail-subtitle" class="text-xl text-gray-500 mb-8 font-medium">Subtítulo atrativo.</p>
 
                     <div class="space-y-6 flex-1">
-                        <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2 text-brand-dark">
+                        <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2">
                             <i data-lucide="list-checks" class="text-brand-orange"></i>
                             Especificações Técnicas
                         </h3>
                         
-                        <!-- Lista Dinâmica de Specs -->
                         <ul id="detail-specs" class="space-y-4">
                             <!-- Injetado via JS -->
                         </ul>
                     </div>
 
-                    <!-- CTA do Produto -->
                     <div class="mt-10 pt-8 border-t">
-                        <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20um%20orçamento%20para..." id="detail-whatsapp" target="_blank" class="w-full flex items-center justify-center gap-3 bg-brand-orange text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-orange-600 transform hover:-translate-y-1 transition-all shadow-lg shadow-orange-500/30">
+                        <a id="detail-whatsapp" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-brand-orange text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-orange-600 transform hover:-translate-y-1 transition-all shadow-lg shadow-orange-500/30">
                             <i data-lucide="message-square" class="w-6 h-6"></i>
-                            Solicitar Orçamento deste Material
+                            <span id="botao-orcamento">Solicitar Orçamento deste Material</span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- Fim da View de Detalhes -->
+    </div>
 
-
-    <!-- Footer Global -->
-    <footer class="bg-brand-dark text-gray-400 py-12 text-center pb-24 md:pb-12 relative">
+    <!-- Footer -->
+    <footer id="site-footer" class="py-12 text-center pb-24 md:pb-12 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-center items-center gap-4 mb-6">
-                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 stroke-brand-orange" stroke-width="4">
-                    <path d="M50 10 L85 30 L95 60 L75 90 L50 95 L25 90 L5 60 L15 30 Z" stroke-linejoin="round"/>
-                    <path d="M50 10 L50 95" />
-                    <path d="M15 30 L85 30" />
-                    <path d="M5 60 L95 60" />
-                    <path d="M25 90 L75 90" />
-                </svg>
-                <span class="font-bold text-xl text-white tracking-widest">LION'S</span>
+            <div id="footer-logo" class="flex justify-center items-center gap-4 mb-6">
+                <!-- Logo será injetado via JS -->
             </div>
-            <p>&copy; 2026 Lion's Comunicação Visual. Todos os direitos reservados.</p>
+            <p id="footer-texto">&copy; 2026 Lion's Comunicação Visual. Todos os direitos reservados.</p>
         </div>
 
-        <!-- Botão de Admin no Rodapé (O cadeado de acesso) -->
         <button onclick="openAdminModal()" class="absolute bottom-4 right-4 text-gray-600 hover:text-brand-orange transition-colors opacity-50 hover:opacity-100 p-2">
             <i data-lucide="lock" class="w-5 h-5"></i>
         </button>
     </footer>
 
-    <!-- Botão Flutuante WhatsApp Global -->
-    <a href="https://wa.me/5500000000000" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-110 transition-transform flex items-center justify-center">
+    <!-- Botão Flutuante WhatsApp -->
+    <a id="whatsapp-float" href="#" target="_blank" class="fixed bottom-6 right-6 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-110 transition-transform flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </a>
 
     <!-- ==========================================
-         PAINEL DE ADMINISTRAÇÃO (MODALS ESCONDIDOS)
+         PAINEL DE ADMINISTRAÇÃO
          ========================================== -->
     <div id="admin-overlay" class="fixed inset-0 bg-black/80 z-50 hidden flex justify-center items-center backdrop-blur-sm p-4">
         
-        <!-- Notificações (Toast) -->
-        <div id="admin-toast" class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-white text-brand-dark px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 opacity-0 -translate-y-10 z-[60]">
+        <div id="admin-toast" class="absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 opacity-0 -translate-y-10 z-[60]">
             Mensagem
         </div>
 
-        <!-- 1. Modal de Login -->
+        <!-- Modal de Login -->
         <div id="admin-login-modal" class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm hidden transform transition-all duration-300 flex-col">
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i data-lucide="shield" class="text-brand-orange w-8 h-8"></i>
                 </div>
-                <h3 class="text-2xl font-black text-brand-dark">Acesso Restrito</h3>
+                <h3 class="text-2xl font-black">Acesso Restrito</h3>
             </div>
-            <input type="password" id="admin-password" placeholder="Digite a senha" class="w-full p-4 bg-gray-100 rounded-xl mb-4 outline-none focus:ring-2 focus:ring-brand-orange text-brand-dark">
+            <input type="password" id="admin-password" placeholder="Digite a senha" class="w-full p-4 bg-gray-100 rounded-xl mb-4 outline-none focus:ring-2 focus:ring-brand-orange">
             <button onclick="loginAdmin()" class="w-full bg-brand-dark text-white font-bold py-4 rounded-xl hover:bg-brand-orange transition-colors mb-2">Entrar</button>
             <button onclick="closeAdminModal()" class="w-full text-gray-500 py-2 hover:text-brand-dark transition-colors text-sm">Cancelar</button>
         </div>
 
-        <!-- 2. Modal do Dashboard (Lista de Produtos) -->
+        <!-- Dashboard -->
         <div id="admin-dashboard-modal" class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] hidden flex-col transform transition-all duration-300">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h3 class="text-2xl font-black text-brand-dark flex items-center gap-2">
+                <h3 class="text-2xl font-black flex items-center gap-2">
                     <i data-lucide="settings" class="text-brand-orange"></i> Painel de Controle
                 </h3>
                 <button onclick="closeAdminModal()" class="text-gray-500 hover:text-red-500 p-2"><i data-lucide="x"></i></button>
             </div>
             
-            <div class="flex justify-between items-center mb-4">
-                <p class="text-gray-600 font-medium">Selecione um produto para editar:</p>
-            </div>
-
-            <div class="overflow-y-auto flex-1 no-scrollbar pr-2" id="admin-product-list">
-                <!-- Lista gerada via JS -->
-            </div>
-        </div>
-
-        <!-- 3. Modal de Edição (Formulário) -->
-        <div id="admin-edit-modal" class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] hidden flex-col transform transition-all duration-300">
-            <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h3 class="text-xl font-black text-brand-dark" id="edit-modal-title">Editar Produto</h3>
-                <button onclick="backToDashboard()" class="text-gray-500 hover:text-red-500 flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar</button>
-            </div>
-
-            <div class="overflow-y-auto flex-1 no-scrollbar pr-2 space-y-4 pb-4 text-brand-dark">
-                <input type="hidden" id="edit-id">
-                
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Título do Produto</label>
-                    <input type="text" id="edit-title" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Subtítulo (Atrativo)</label>
-                    <input type="text" id="edit-subtitle" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Especificações</label>
-                    <p class="text-xs text-gray-500 mb-2">Formato: <b>Nome: Valor</b> (Uma por linha). Ex: <i>Tamanho: 10x15cm</i></p>
-                    <textarea id="edit-specs" rows="4" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange whitespace-pre-wrap"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">Nova Imagem (Opcional)</label>
-                    <div class="flex items-center gap-4">
-                        <img id="edit-preview-img" src="" class="w-20 h-20 object-cover rounded-lg bg-gray-100 border hidden">
-                        <input type="file" id="edit-image-file" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-4 pt-4 border-t">
-                <button onclick="saveProduct()" id="btn-save-product" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="save" class="w-5 h-5"></i> Salvar Alterações
+            <!-- Abas do Admin -->
+            <div class="flex gap-2 mb-4 border-b">
+                <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange" data-tab="produtos">
+                    <i data-lucide="package" class="w-4 h-4 inline"></i> Produtos
                 </button>
+                <button onclick="showAdminTab('config')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="config">
+                    <i data-lucide="settings" class="w-4 h-4 inline"></i> Configurações
+                </button>
+                <button onclick="showAdminTab('cores')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="cores">
+                    <i data-lucide="palette" class="w-4 h-4 inline"></i> Cores
+                </button>
+                <button onclick="showAdminTab('textos')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark" data-tab="textos">
+                    <i data-lucide="type" class="w-4 h-4 inline"></i> Textos
+                </button>
+            </div>
+
+            <div class="overflow-y-auto flex-1 no-scrollbar pr-2" id="admin-content">
+                <!-- Conteúdo será injetado via JS -->
             </div>
         </div>
     </div>
 
     <script>
-        // Inicializa Ícones
-        lucide.createIcons();
+        // =============================================
+        // CONFIGURAÇÃO
+        // =============================================
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec";
+        const SENHA_ADMIN = "lions2026";
 
-        /* =====================================================================
-           CONFIGURAÇÃO DO GOOGLE SHEETS
-           ===================================================================== */
-        const GOOGLE_SHEETS_URL = "COLE_A_URL_DO_APP_SCRIPT_AQUI";
+        // =============================================
+        // ESTADO GLOBAL
+        // =============================================
+        let configs = {};
+        let cores = {};
+        let textos = {};
+        let produtos = {};
+        let currentAdminPassword = "";
+        let newBase64Image = "";
+        let editingProductId = null;
 
-        /* =====================================================================
-           BANCO DE DADOS DOS PRODUTOS (FALLBACK LOCAL)
-           ===================================================================== */
-        let productsData = {
-            santinho: {
-                title: "Santinho",
-                subtitle: "O material mais tradicional e indispensável.",
-                specs: [
-                    { label: "Medidas Padrão", value: "7x10 cm ou 10x14 cm" },
-                    { label: "Material", value: "Papel Couché 90g, 115g ou 150g" },
-                    { label: "Cores", value: "4x4 (Colorido Frente e Verso) ou 4x0" },
-                    { label: "Acabamento", value: "Corte Reto" },
-                    { label: "Tiragem", value: "A partir de 5.000 unidades" }
-                ]
-            },
-            cartao: {
-                title: "Cartão de Visita",
-                subtitle: "Sua apresentação pessoal com qualidade.",
-                specs: [
-                    { label: "Medidas Padrão", value: "9x5 cm" },
-                    { label: "Material", value: "Couché 250g ou 300g" },
-                    { label: "Cores", value: "4x4 (Colorido Frente e Verso)" },
-                    { label: "Acabamento", value: "Verniz Total ou Verniz Localizado (UV)" },
-                    { label: "Tiragem", value: "A partir de 1.000 unidades" }
-                ]
-            },
-            colinha: {
-                title: "Colinha Eleitoral",
-                subtitle: "Facilite o voto do seu eleitor no dia da eleição.",
-                specs: [
-                    { label: "Medidas Padrão", value: "7x10 cm" },
-                    { label: "Material", value: "Papel Couché 90g" },
-                    { label: "Cores", value: "4x4 (Colorido Frente e Verso)" },
-                    { label: "Layout", value: "Espaço para preenchimento de números" }
-                ]
-            },
-            jornal: {
-                title: "Jornal Informativo",
-                subtitle: "Ideal para detalhar plano de governo e realizações.",
-                specs: [
-                    { label: "Formato", value: "Fechado A4 / Aberto A3 (4 Páginas)" },
-                    { label: "Material", value: "Papel Jornal 45g ou Couché LWC 60g" },
-                    { label: "Cores", value: "Impressão Rotativa Colorida" },
-                    { label: "Acabamento", value: "Dobra central" }
-                ]
-            },
-            perfurado: {
-                title: "Parachoque Perfurado",
-                subtitle: "Divulgação móvel sem comprometer a visibilidade.",
-                specs: [
-                    { label: "Tamanho Padrão", value: "130x50 cm (Adaptável conforme veículo)" },
-                    { label: "Material", value: "Adesivo Vinil Perfurado (Película homologada)" },
-                    { label: "Resolução", value: "Alta Definição (1440 dpi)" },
-                    { label: "Legislação", value: "Adequado às normas de trânsito vigentes" }
-                ]
-            },
-            adesivo: {
-                title: "Adesivos Diversos",
-                subtitle: "Para carros, motos, cadernos e janelas.",
-                specs: [
-                    { label: "Formatos", value: "10x15 cm, 30x10 cm, ou tamanhos personalizados" },
-                    { label: "Material", value: "Vinil Adesivo Brilho ou Fosco (Resistente à água)" },
-                    { label: "Acabamento", value: "Corte Reto ou Meio-corte Eletrônico" },
-                    { label: "Durabilidade", value: "Alta resistência a sol e chuva" }
-                ]
-            },
-            pragao: {
-                title: "Pragão & Praguinha",
-                subtitle: "Identificação rápida de apoiadores e cabos eleitorais.",
-                specs: [
-                    { label: "Tamanhos", value: "Praguinha (5cm redonda) / Pragão (7cm redondo)" },
-                    { label: "Material", value: "Papel Adesivo Fotográfico ou Vinil" },
-                    { label: "Corte", value: "Corte e vinco redondo (Cartela)" },
-                    { label: "Uso", value: "Ideal para fixação em roupas e tecidos leves" }
-                ]
-            },
-            bandeira: {
-                title: "Bandeiras",
-                subtitle: "Destaque e volume para sua militância nas ruas.",
-                specs: [
-                    { label: "Tamanhos Comuns", value: "100x70 cm ou 150x100 cm" },
-                    { label: "Material", value: "Tecido Oxford ou Bember" },
-                    { label: "Impressão", value: "Sublimação de alta qualidade (1 lado com transparência no verso)" },
-                    { label: "Acabamento", value: "Costura de reforço e bainha para mastro" }
-                ]
-            },
-            windbanner: {
-                title: "Wind Banner",
-                subtitle: "Comunicação visual dinâmica para pontos fixos.",
-                specs: [
-                    { label: "Tamanhos", value: "2 metros, 2.5 metros ou 3 metros" },
-                    { label: "Estrutura", value: "Haste de fibra de vidro ou alumínio e base plástica (água/areia)" },
-                    { label: "Tecido", value: "Tecido Oxford Sublimado dupla face" },
-                    { label: "Formatos", value: "Pena, Gota ou Faca" }
-                ]
-            },
-            balcao: {
-                title: "Balcão Promocional",
-                subtitle: "Ponto de apoio móvel para distribuição de material.",
-                specs: [
-                    { label: "Material", value: "Estrutura em PVC ou PS (Poliestireno)" },
-                    { label: "Personalização", value: "Adesivação frontal, laterais e testeira superior" },
-                    { label: "Montagem", value: "Fácil montagem (encaixes rápidos), acompanha bolsa de transporte" },
-                    { label: "Capacidade", value: "Suporta pequenos volumes e materiais gráficos" }
-                ]
-            },
-            ventarola: {
-                title: "Ventarola",
-                subtitle: "O brinde útil e refrescante para dias quentes.",
-                specs: [
-                    { label: "Tamanho", value: "Aproximadamente 20x25 cm (formato padrão com cabo)" },
-                    { label: "Material", value: "Papel Triplex 250g ou 300g" },
-                    { label: "Impressão", value: "4x4 Cores (Frente e Verso)" },
-                    { label: "Acabamento", value: "Furo central para segurar (estilo leque)" }
-                ]
-            }
-        };
-
-        // Objeto global que armazenará as imagens lidas dos arquivos .txt
-        window.base64Images = {};
-
-        // Função para carregar os arquivos .txt do GitHub de forma assíncrona
-        async function loadTxtImages() {
-            const keys = ['logo', 'santinho', 'cartao', 'colinha', 'jornal', 'perfurado', 'adesivo', 'pragao', 'praguinha', 'bandeira', 'windbanner', 'balcao', 'ventarola'];
-
-            function formatBase64(str, prefix = 'data:image/jpeg;base64,') {
-                if (!str || str.trim() === "") return "";
-                let clean = str.trim();
-                if (clean.startsWith("data:image") || clean.startsWith("http")) return clean;
-                return prefix + clean;
+        // =============================================
+        // CARREGAR DADOS DA PLANILHA
+        // =============================================
+        async function loadData() {
+            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
+                console.warn("Configure a GOOGLE_SHEETS_URL");
+                return;
             }
 
-            for (const key of keys) {
-                try {
-                    // Tenta ler o arquivo correspondente (ex: logo.txt, santinho.txt, etc.)
-                    const response = await fetch(`${key}.txt`);
-                    if (response.ok) {
-                        const text = await response.text();
-                        window.base64Images[key] = formatBase64(text);
-                    }
-                } catch (e) {
-                    // Arquivo .txt ainda não criado para este item, ignora silenciosamente
-                }
-            }
-
-            // Aplicação na Logomarca
-            if (window.base64Images.logo) {
-                const logoContainer = document.getElementById('hero-logo');
-                if (logoContainer) {
-                    logoContainer.innerHTML = `<img src="${window.base64Images.logo}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
-                }
-            }
-
-            // Aplicação nos Produtos da Home
-            Object.keys(window.base64Images).forEach(key => {
-                if (key === 'logo') return;
-                const imgElement = document.getElementById(`img-${key}`);
-                if (imgElement && window.base64Images[key]) {
-                    imgElement.src = window.base64Images[key];
-                }
-            });
-        }
-
-        // Executa o carregamento das imagens em txt
-        loadTxtImages();
-        
-        // Busca os dados do Google Sheets
-        async function fetchGoogleSheetsData() {
-            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") return;
             try {
                 const response = await fetch(GOOGLE_SHEETS_URL);
-                const remoteData = await response.json();
+                const data = await response.json();
                 
-                if (remoteData && !remoteData.error) {
-                    Object.keys(remoteData).forEach(key => {
-                        if (remoteData[key].title) {
-                            productsData[key] = remoteData[key];
-                            if (remoteData[key].image && remoteData[key].image.trim() !== "") {
-                                window.base64Images[key] = remoteData[key].image;
-                            }
-                        }
-                    });
-                    loadTxtImages();
-                    updateUICards();
-                }
+                configs = data.configs || {};
+                cores = data.cores || {};
+                textos = data.textos || {};
+                produtos = data.produtos || {};
+
+                applyConfigs();
+                applyCores();
+                applyTextos();
+                renderProdutos();
+                
+                return data;
             } catch (error) {
-                console.warn("Aviso: Não foi possível carregar os dados do Google Sheets.", error);
+                console.error("Erro ao carregar dados:", error);
             }
         }
 
-        function updateUICards() {
-            Object.keys(productsData).forEach(key => {
-                const card = document.querySelector(`[onclick="openProduct('${key}')"]`);
-                if (card) {
-                    const h4 = card.querySelector('h4');
-                    if(h4) h4.innerText = productsData[key].title;
+        // =============================================
+        // APLICAR CONFIGURAÇÕES
+        // =============================================
+        function applyConfigs() {
+            // Logo
+            const logoContainer = document.getElementById('hero-logo');
+            if (logoContainer && configs.logo) {
+                logoContainer.innerHTML = `<img src="${configs.logo}" alt="${configs.nome_empresa || 'Logo'}" class="w-full h-full object-contain">`;
+            }
+
+            // Footer Logo
+            const footerLogo = document.getElementById('footer-logo');
+            if (footerLogo && configs.logo) {
+                footerLogo.innerHTML = `
+                    <img src="${configs.logo}" alt="${configs.nome_empresa || 'Logo'}" class="w-10 h-10 object-contain">
+                    <span class="font-bold text-xl text-white tracking-widest">${configs.nome_empresa || 'LION\'S'}</span>
+                `;
+            }
+
+            // Hero
+            document.getElementById('hero-title').textContent = configs.titulo_hero || 'LION\'S';
+            document.getElementById('hero-subtitle').textContent = configs.subtitulo_hero || 'COMUNICAÇÃO VISUAL';
+            document.getElementById('hero-badge').textContent = configs.badge_hero || 'ELEIÇÕES 2026';
+
+            // WhatsApp
+            const numero = configs.whatsapp || '5500000000000';
+            const linkBase = configs.whatsapp_link || 'https://wa.me/';
+            
+            document.querySelectorAll('[id^="whatsapp"]').forEach(el => {
+                if (el.tagName === 'A') {
+                    el.href = `${linkBase}${numero}`;
                 }
             });
+            
+            document.getElementById('cta-botao').href = `${linkBase}${numero}`;
+
+            // CTA
+            document.getElementById('cta-titulo').textContent = configs.titulo_cta || 'Pronto para imprimir sua vitória?';
+            document.getElementById('cta-texto').textContent = configs.texto_cta || 'Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.';
+            document.getElementById('cta-botao').innerHTML = `
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                ${configs.botao_cta || 'Falar com Consultor'}
+            `;
+
+            // Outros textos
+            document.getElementById('texto-voltar').textContent = configs.texto_voltar || 'Voltar para a lista';
+            document.getElementById('botao-orcamento').textContent = configs.botao_orcamento || 'Solicitar Orçamento deste Material';
+            document.getElementById('footer-texto').textContent = 
+                `© ${configs.ano_corrente || '2026'} ${configs.nome_empresa || 'Lion\'s Comunicação Visual'}. ${configs.rodape || 'Todos os direitos reservados.'}`;
+
+            // Título do site
+            if (textos.titulo_site) {
+                document.getElementById('site-title').textContent = textos.titulo_site;
+            }
+
+            lucide.createIcons();
         }
 
-        fetchGoogleSheetsData();
+        // =============================================
+        // APLICAR CORES
+        // =============================================
+        function applyCores() {
+            const style = document.createElement('style');
+            let css = '';
+            
+            // Cores principais
+            if (cores.primaria) {
+                css += `
+                    .bg-brand-orange { background-color: ${cores.primaria} !important; }
+                    .text-brand-orange { color: ${cores.primaria} !important; }
+                    .border-brand-orange { border-color: ${cores.primaria} !important; }
+                    .ring-brand-orange { ring-color: ${cores.primaria} !important; }
+                    .shadow-brand-orange\\/20 { box-shadow: 0 10px 15px -3px ${cores.primaria}33, 0 4px 6px -2px ${cores.primaria}1a; }
+                    .shadow-orange-500\\/30 { box-shadow: 0 10px 15px -3px ${cores.primaria}4d, 0 4px 6px -2px ${cores.primaria}33; }
+                    .hover\\:bg-orange-600:hover { background-color: ${cores.primaria}dd !important; }
+                    .hover\\:border-brand-orange:hover { border-color: ${cores.primaria} !important; }
+                    .hover\\:text-brand-orange:hover { color: ${cores.primaria} !important; }
+                    .group-hover\\:text-brand-orange:hover { color: ${cores.primaria} !important; }
+                    .group-hover\\:border-brand-orange:hover { border-color: ${cores.primaria} !important; }
+                    .bg-brand-orange\\/10 { background-color: ${cores.primaria}1a !important; }
+                `;
+            }
 
-        /* =====================================================================
-           LÓGICA DA SINGLE PAGE APPLICATION (SPA) - TROCA DE TELAS
-           ===================================================================== */
-        const homeView = document.getElementById('home-view');
-        const productView = document.getElementById('product-view');
-        const NUMERO_WHATSAPP = "5500000000000"; 
+            if (cores.secundaria) {
+                css += `
+                    .bg-brand-dark { background-color: ${cores.secundaria} !important; }
+                    .text-brand-dark { color: ${cores.secundaria} !important; }
+                    .border-brand-dark { border-color: ${cores.secundaria} !important; }
+                    .hover\\:bg-brand-dark:hover { background-color: ${cores.secundaria} !important; }
+                    .hover\\:text-brand-dark:hover { color: ${cores.secundaria} !important; }
+                `;
+            }
 
+            if (cores.whatsapp) {
+                css += `
+                    .bg-whatsapp { background-color: ${cores.whatsapp} !important; }
+                `;
+            }
+
+            // Header
+            const header = document.getElementById('hero-header');
+            if (header && cores.primaria) {
+                header.style.backgroundColor = cores.primaria;
+            }
+
+            // CTA
+            const cta = document.getElementById('secao-cta');
+            if (cta && cores.primaria) {
+                cta.style.backgroundColor = cores.primaria;
+            }
+
+            // Textos
+            if (cores.texto) {
+                css += `
+                    .text-brand-dark { color: ${cores.texto} !important; }
+                `;
+            }
+
+            if (cores.fundo) {
+                document.getElementById('app-body').style.backgroundColor = cores.fundo;
+            }
+
+            // Injetar CSS
+            const oldStyle = document.querySelector('#dynamic-colors');
+            if (oldStyle) oldStyle.remove();
+            style.id = 'dynamic-colors';
+            style.textContent = css;
+            document.head.appendChild(style);
+        }
+
+        // =============================================
+        // APLICAR TEXTOS
+        // =============================================
+        function applyTextos() {
+            if (textos.meta_descricao) {
+                document.querySelector('meta[name="description"]')?.setAttribute('content', textos.meta_descricao);
+            }
+
+            if (textos.titulo_site) {
+                document.title = textos.titulo_site;
+            }
+
+            // Seções
+            document.getElementById('secao1-titulo').textContent = configs.titulo_secao1 || 'Sua campanha merece o melhor.';
+            document.getElementById('secao1-texto').textContent = configs.texto_secao1 || 'Oferecemos uma linha completa de materiais gráficos...';
+            
+            document.getElementById('titulo-materiais').textContent = configs.titulo_materiais || 'Materiais de Campanha';
+            document.getElementById('subtitulo-materiais').textContent = configs.subtitulo_materiais || 'Clique no produto para ver detalhes.';
+            
+            document.getElementById('titulo-adesivos').textContent = configs.titulo_adesivos || 'Adesivos & Visibilidade';
+            document.getElementById('subtitulo-adesivos').textContent = configs.subtitulo_adesivos || 'Clique para ver formatos e materiais.';
+            
+            document.getElementById('titulo-grandes-formatos').textContent = configs.titulo_grandes_formatos || 'Grandes Formatos';
+            document.getElementById('subtitulo-grandes-formatos').textContent = configs.subtitulo_grandes_formatos || 'Selecione o material desejado.';
+        }
+
+        // =============================================
+        // RENDERIZAR PRODUTOS
+        // =============================================
+        function renderProdutos() {
+            const gridMateriais = document.getElementById('grid-materiais');
+            const gridAdesivos = document.getElementById('grid-adesivos');
+            const gridGrandes = document.getElementById('grid-grandes-formatos');
+            
+            gridMateriais.innerHTML = '';
+            gridAdesivos.innerHTML = '';
+            gridGrandes.innerHTML = '';
+
+            const categorias = {
+                'santinho': 'materiais',
+                'cartao': 'materiais',
+                'colinha': 'materiais',
+                'jornal': 'materiais',
+                'adesivos': 'adesivos',
+                'grandes_formatos': 'grandes'
+            };
+
+            Object.keys(produtos).forEach(id => {
+                const prod = produtos[id];
+                const categoria = prod.categoria || 'geral';
+                
+                // Determinar qual grid
+                let grid;
+                let cardClass = '';
+                let layout = '';
+
+                if (categoria === 'santinho' || categoria === 'cartao' || categoria === 'colinha' || categoria === 'jornal' || categoria === 'materiais') {
+                    grid = gridMateriais;
+                    cardClass = 'bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100';
+                    layout = `
+                        <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
+                            <img src="${prod.image || 'https://placehold.co/400x533/f4f4f5/f26522?text=' + prod.title}" 
+                                 alt="${prod.title}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">${prod.title}</h4>
+                        <p class="text-sm text-gray-600">Ver detalhes →</p>
+                    `;
+                } else if (categoria === 'adesivos') {
+                    grid = gridAdesivos;
+                    cardClass = 'bg-gray-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:shadow-brand-orange/20 hover:-translate-y-2 transition-all duration-300';
+                    layout = `
+                        <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
+                            <img src="${prod.image || 'https://placehold.co/600x300/1f2937/f26522?text=' + prod.title}" 
+                                 alt="${prod.title}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center">
+                            <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
+                                <i data-lucide="sticker"></i>
+                                <h4 class="text-2xl font-bold">${prod.title}</h4>
+                            </div>
+                            <p class="text-brand-orange text-sm font-bold mt-4">Ver especificações →</p>
+                        </div>
+                    `;
+                } else if (categoria === 'grandes_formatos') {
+                    grid = gridGrandes;
+                    cardClass = 'cursor-pointer w-full lg:w-1/3 text-center group';
+                    layout = `
+                        <div class="relative w-full aspect-square mb-6 mx-auto bg-white rounded-full shadow-xl flex items-center justify-center p-8 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 ring-4 ring-transparent group-hover:ring-brand-orange">
+                            <img src="${prod.image || 'https://placehold.co/400x400/fff/f26522?text=' + prod.title}" 
+                                 alt="${prod.title}" 
+                                 class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform">
+                        </div>
+                        <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">${prod.title}</h3>
+                        <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
+                    `;
+                }
+
+                if (grid) {
+                    const div = document.createElement('div');
+                    div.className = `product-card cursor-pointer group ${cardClass}`;
+                    div.setAttribute('data-product', id);
+                    div.onclick = () => openProduct(id);
+                    div.innerHTML = layout;
+                    grid.appendChild(div);
+                }
+            });
+
+            // Se grids estiverem vazios, mostrar placeholder
+            if (gridMateriais.children.length === 0) {
+                gridMateriais.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">Nenhum material cadastrado.</div>`;
+            }
+            if (gridAdesivos.children.length === 0) {
+                gridAdesivos.innerHTML = `<div class="col-span-full text-center text-gray-400 py-10">Nenhum adesivo cadastrado.</div>`;
+            }
+            if (gridGrandes.children.length === 0) {
+                gridGrandes.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">Nenhum grande formato cadastrado.</div>`;
+            }
+
+            lucide.createIcons();
+        }
+
+        // =============================================
+        // ABRIR PRODUTO (DETALHE)
+        // =============================================
         function openProduct(productId) {
-            const data = productsData[productId];
-            if (!data) return;
+            const prod = produtos[productId];
+            if (!prod) return;
 
-            document.getElementById('detail-title').innerText = data.title;
-            document.getElementById('detail-subtitle').innerText = data.subtitle;
+            document.getElementById('detail-title').textContent = prod.title;
+            document.getElementById('detail-subtitle').textContent = prod.subtitle || '';
             
             const detailImage = document.getElementById('detail-image');
-            if (window.base64Images[productId] && window.base64Images[productId].trim() !== "") {
-                detailImage.src = window.base64Images[productId];
-            } else {
-                const homeImgElement = document.getElementById(`img-${productId}`);
-                detailImage.src = homeImgElement ? homeImgElement.src : 'https://placehold.co/600x600/f4f4f5/f26522?text=FOTO';
-            }
+            detailImage.src = prod.image || 'https://placehold.co/600x600/f4f4f5/f26522?text=' + prod.title;
 
             const specsContainer = document.getElementById('detail-specs');
             specsContainer.innerHTML = '';
             
-            if (data.specs && data.specs.length > 0) {
-                data.specs.forEach(spec => {
+            if (prod.specs && prod.specs.length > 0) {
+                prod.specs.forEach(spec => {
                     const li = document.createElement('li');
                     li.className = "flex items-start gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100";
                     li.innerHTML = `
@@ -703,283 +595,678 @@
 
             lucide.createIcons();
 
-            const msg = encodeURIComponent(`Olá! Gostaria de fazer um orçamento para: *${data.title}*. Pode me ajudar?`);
-            document.getElementById('detail-whatsapp').href = `https://wa.me/${NUMERO_WHATSAPP}?text=${msg}`;
+            const numero = configs.whatsapp || '5500000000000';
+            const msg = encodeURIComponent(`Olá! Gostaria de fazer um orçamento para: *${prod.title}*. Pode me ajudar?`);
+            document.getElementById('detail-whatsapp').href = `https://wa.me/${numero}?text=${msg}`;
 
-            homeView.classList.add('hidden');
-            productView.classList.remove('hidden');
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('product-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function closeProduct() {
-            productView.classList.add('hidden');
-            homeView.classList.remove('hidden');
-            ScrollTrigger.refresh();
+            document.getElementById('product-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            if (typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
+            }
         }
 
-        /* =====================================================================
-           LÓGICA DO PAINEL DE ADMINISTRAÇÃO (MODALS)
-           ===================================================================== */
-        const adminOverlay = document.getElementById('admin-overlay');
-        const adminLogin = document.getElementById('admin-login-modal');
-        const adminDash = document.getElementById('admin-dashboard-modal');
-        const adminEdit = document.getElementById('admin-edit-modal');
-        const adminToast = document.getElementById('admin-toast');
-        let currentAdminPassword = "";
-        let newBase64Image = "";
-
-        function showToast(message, isError = false) {
-            adminToast.innerText = message;
-            adminToast.className = `absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 z-[60] ${isError ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`;
-            adminToast.style.opacity = '1';
-            adminToast.style.transform = 'translate(-50%, 0)';
-            
-            setTimeout(() => {
-                adminToast.style.opacity = '0';
-                adminToast.style.transform = 'translate(-50%, -40px)';
-            }, 3000);
-        }
-
+        // =============================================
+        // ADMIN - LOGIN E DASHBOARD
+        // =============================================
         function openAdminModal() {
-            if (GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
-                alert("Por favor, configure a GOOGLE_SHEETS_URL no código fonte primeiro.");
+            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
+                alert("Configure a GOOGLE_SHEETS_URL no código primeiro.");
                 return;
             }
-            adminOverlay.classList.remove('hidden');
+            document.getElementById('admin-overlay').classList.remove('hidden');
             
             if (currentAdminPassword !== "") {
                 showDashboard();
             } else {
-                adminLogin.classList.remove('hidden');
-                adminLogin.classList.add('flex');
+                document.getElementById('admin-login-modal').classList.remove('hidden');
+                document.getElementById('admin-login-modal').classList.add('flex');
             }
         }
 
         function closeAdminModal() {
-            adminOverlay.classList.add('hidden');
-            adminLogin.classList.add('hidden');
-            adminLogin.classList.remove('flex');
-            adminDash.classList.add('hidden');
-            adminDash.classList.remove('flex');
-            adminEdit.classList.add('hidden');
-            adminEdit.classList.remove('flex');
+            document.getElementById('admin-overlay').classList.add('hidden');
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-login-modal').classList.remove('flex');
+            document.getElementById('admin-dashboard-modal').classList.add('hidden');
+            document.getElementById('admin-dashboard-modal').classList.remove('flex');
             newBase64Image = "";
         }
 
         function loginAdmin() {
             const pwd = document.getElementById('admin-password').value;
-            if(pwd.trim() === "") {
+            if (pwd.trim() === "") {
                 showToast("Digite a senha!", true);
                 return;
             }
+            if (pwd !== SENHA_ADMIN) {
+                showToast("Senha incorreta!", true);
+                return;
+            }
             currentAdminPassword = pwd;
-            adminLogin.classList.add('hidden');
-            adminLogin.classList.remove('flex');
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-login-modal').classList.remove('flex');
             document.getElementById('admin-password').value = "";
             showDashboard();
         }
 
-        function showDashboard() {
-            adminDash.classList.remove('hidden');
-            adminDash.classList.add('flex');
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('admin-toast');
+            toast.textContent = message;
+            toast.className = `absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 z-[60] ${isError ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0)';
             
-            const listContainer = document.getElementById('admin-product-list');
-            listContainer.innerHTML = '';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, -40px)';
+            }, 3000);
+        }
+
+        // =============================================
+        // ADMIN - ABAS
+        // =============================================
+        let currentAdminTab = 'produtos';
+
+        function showAdminTab(tab) {
+            currentAdminTab = tab;
             
-            Object.keys(productsData).forEach(key => {
-                const p = productsData[key];
-                const item = document.createElement('div');
-                item.className = "flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-xl mb-3 hover:border-brand-orange transition-colors";
-                
-                let imgSrc = window.base64Images[key] || 'https://placehold.co/100x100/eee/999?text=IMG';
-                
-                item.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <img src="${imgSrc}" class="w-12 h-12 rounded-lg object-cover bg-gray-200">
-                        <div>
-                            <h4 class="font-bold text-brand-dark">${p.title}</h4>
-                            <p class="text-xs text-gray-500">ID: ${key}</p>
-                        </div>
-                    </div>
-                    <button onclick="openEditForm('${key}')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-lg transition-colors">
-                        <i data-lucide="edit" class="w-5 h-5"></i>
-                    </button>
-                `;
-                listContainer.appendChild(item);
+            // Atualizar abas
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-brand-orange', 'text-brand-orange');
+                btn.classList.add('text-gray-500');
+                if (btn.dataset.tab === tab) {
+                    btn.classList.add('border-brand-orange', 'text-brand-orange');
+                    btn.classList.remove('text-gray-500');
+                }
             });
+
+            const content = document.getElementById('admin-content');
+            
+            if (tab === 'produtos') {
+                renderAdminProdutos();
+            } else if (tab === 'config') {
+                renderAdminConfig();
+            } else if (tab === 'cores') {
+                renderAdminCores();
+            } else if (tab === 'textos') {
+                renderAdminTextos();
+            }
+        }
+
+        function showDashboard() {
+            const modal = document.getElementById('admin-dashboard-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            showAdminTab('produtos');
             lucide.createIcons();
         }
 
-        function backToDashboard() {
-            adminEdit.classList.add('hidden');
-            adminEdit.classList.remove('flex');
-            showDashboard();
-            newBase64Image = "";
-            document.getElementById('edit-image-file').value = "";
-            document.getElementById('edit-preview-img').classList.add('hidden');
+        // =============================================
+        // ADMIN - PRODUTOS
+        // =============================================
+        function renderAdminProdutos() {
+            const content = document.getElementById('admin-content');
+            let html = `
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600 font-medium">Gerenciar produtos do site</p>
+                    <button onclick="openProductForm()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Novo Produto
+                    </button>
+                </div>
+                <div class="space-y-3">
+            `;
+
+            Object.keys(produtos).forEach(id => {
+                const p = produtos[id];
+                const imgSrc = p.image || 'https://placehold.co/100x100/eee/999?text=IMG';
+                html += `
+                    <div class="flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-xl hover:border-brand-orange transition-colors">
+                        <div class="flex items-center gap-4">
+                            <img src="${imgSrc}" class="w-12 h-12 rounded-lg object-cover bg-gray-200">
+                            <div>
+                                <h4 class="font-bold">${p.title}</h4>
+                                <p class="text-xs text-gray-500">ID: ${id} | Categoria: ${p.categoria || 'geral'}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProductForm('${id}')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-lg transition-colors">
+                                <i data-lucide="edit" class="w-5 h-5"></i>
+                            </button>
+                            <button onclick="deleteProduct('${id}')" class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-lg transition-colors">
+                                <i data-lucide="trash-2" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+            lucide.createIcons();
         }
 
-        function openEditForm(productId) {
-            adminDash.classList.add('hidden');
-            adminDash.classList.remove('flex');
-            adminEdit.classList.remove('hidden');
-            adminEdit.classList.add('flex');
+        function openProductForm(productId = null) {
+            editingProductId = productId;
+            const content = document.getElementById('admin-content');
+            
+            let prod = { title: '', subtitle: '', specs: [], image: '', categoria: 'geral', ordem: 999, ativo: 'SIM' };
+            if (productId && produtos[productId]) {
+                prod = produtos[productId];
+            }
 
-            const data = productsData[productId] || { title: "", subtitle: "", specs: [] };
-            
-            document.getElementById('edit-id').value = productId;
-            document.getElementById('edit-title').value = data.title;
-            document.getElementById('edit-subtitle').value = data.subtitle;
-            
-            let specsText = "";
-            if(data.specs && data.specs.length > 0) {
-                specsText = data.specs.map(s => `${s.label}: ${s.value}`).join('\n');
-            }
-            document.getElementById('edit-specs').value = specsText;
-            
-            const imgPreview = document.getElementById('edit-preview-img');
-            if (window.base64Images[productId]) {
-                imgPreview.src = window.base64Images[productId];
-                imgPreview.classList.remove('hidden');
-            } else {
-                imgPreview.classList.add('hidden');
-            }
+            const specsText = prod.specs ? prod.specs.map(s => `${s.label}: ${s.value}`).join('\n') : '';
+
+            content.innerHTML = `
+                <div class="bg-white p-6 rounded-xl border">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-bold text-lg">${productId ? 'Editar' : 'Novo'} Produto</h4>
+                        <button onclick="renderAdminProdutos()" class="text-gray-500 hover:text-gray-700">✕</button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">ID (identificador único)</label>
+                            <input type="text" id="form-product-id" value="${productId || ''}" ${productId ? 'readonly' : ''} 
+                                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange ${productId ? 'bg-gray-100' : ''}">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Título</label>
+                            <input type="text" id="form-product-title" value="${prod.title}" 
+                                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Subtítulo</label>
+                            <input type="text" id="form-product-subtitle" value="${prod.subtitle || ''}" 
+                                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Categoria</label>
+                            <select id="form-product-categoria" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                                <option value="materiais" ${prod.categoria === 'materiais' ? 'selected' : ''}>Materiais de Campanha</option>
+                                <option value="adesivos" ${prod.categoria === 'adesivos' ? 'selected' : ''}>Adesivos & Visibilidade</option>
+                                <option value="grandes_formatos" ${prod.categoria === 'grandes_formatos' ? 'selected' : ''}>Grandes Formatos</option>
+                                <option value="geral" ${prod.categoria === 'geral' ? 'selected' : ''}>Geral</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Ordem (número menor = aparece primeiro)</label>
+                            <input type="number" id="form-product-ordem" value="${prod.ordem || 999}" 
+                                   class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Ativo</label>
+                            <select id="form-product-ativo" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                                <option value="SIM" ${prod.ativo === 'SIM' ? 'selected' : ''}>SIM</option>
+                                <option value="NAO" ${prod.ativo === 'NAO' ? 'selected' : ''}>NÃO</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Especificações (uma por linha: Nome: Valor)</label>
+                            <textarea id="form-product-specs" rows="6" 
+                                      class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${specsText}</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Imagem</label>
+                            ${prod.image ? `<img src="${prod.image}" class="w-32 h-32 object-cover rounded-lg mb-2 border">` : ''}
+                            <input type="file" id="form-product-image" accept="image/*" 
+                                   class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
+                            <div id="form-image-preview" class="mt-2"></div>
+                        </div>
+
+                        <button onclick="saveAdminProduct()" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors">
+                            <i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Preview da imagem
+            document.getElementById('form-product-image').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('form-image-preview');
+                    preview.innerHTML = `<img src="${event.target.result}" class="w-32 h-32 object-cover rounded-lg border">`;
+                    newBase64Image = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+
+            lucide.createIcons();
         }
 
-        document.getElementById('edit-image-file').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 600; 
-                    const scaleSize = MAX_WIDTH / img.width;
-                    canvas.width = MAX_WIDTH;
-                    canvas.height = img.height * scaleSize;
-                    
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    
-                    newBase64Image = canvas.toDataURL('image/jpeg', 0.7);
-                    
-                    const imgPreview = document.getElementById('edit-preview-img');
-                    imgPreview.src = newBase64Image;
-                    imgPreview.classList.remove('hidden');
-                }
-                img.src = event.target.result;
+        async function saveAdminProduct() {
+            const id = document.getElementById('form-product-id').value.trim();
+            if (!id) {
+                showToast('Informe um ID para o produto.', true);
+                return;
             }
-            reader.readAsDataURL(file);
-        });
 
-        async function saveProduct() {
-            const btn = document.getElementById('btn-save-product');
-            btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Salvando...`;
-            btn.disabled = true;
+            const title = document.getElementById('form-product-title').value.trim() || id;
+            const subtitle = document.getElementById('form-product-subtitle').value.trim();
+            const categoria = document.getElementById('form-product-categoria').value;
+            const ordem = parseInt(document.getElementById('form-product-ordem').value) || 999;
+            const ativo = document.getElementById('form-product-ativo').value;
 
-            const id = document.getElementById('edit-id').value;
-            
-            const specsLines = document.getElementById('edit-specs').value.split('\n');
-            const specsArray = [];
-            specsLines.forEach(line => {
-                if(line.trim() !== "") {
+            const specsText = document.getElementById('form-product-specs').value;
+            const specs = [];
+            specsText.split('\n').forEach(line => {
+                if (line.trim()) {
                     const parts = line.split(':');
-                    if(parts.length >= 2) {
-                        const label = parts[0].trim();
-                        const value = parts.slice(1).join(':').trim(); 
-                        specsArray.push({ label, value });
+                    if (parts.length >= 2) {
+                        specs.push({ label: parts[0].trim(), value: parts.slice(1).join(':').trim() });
                     }
                 }
             });
 
-            const finalImage = newBase64Image !== "" ? newBase64Image : (window.base64Images[id] || "");
+            const image = newBase64Image || (produtos[id]?.image || '');
 
-            const payload = {
-                password: currentAdminPassword,
-                action: "save",
-                product: {
-                    id: id,
-                    title: document.getElementById('edit-title').value,
-                    subtitle: document.getElementById('edit-subtitle').value,
-                    specs: specsArray,
-                    image: finalImage
-                }
-            };
+            const productData = { id, title, subtitle, specs, image, categoria, ordem, ativo };
 
             try {
                 const response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
-                    body: JSON.stringify(payload),
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'saveProduct',
+                        product: productData
+                    }),
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
-                
+
                 const result = await response.json();
-                
                 if (result.success) {
                     showToast(result.message);
-                    productsData[id] = payload.product;
-                    window.base64Images[id] = finalImage;
-                    
-                    loadTxtImages();
-                    updateUICards();
-                    
-                    setTimeout(() => backToDashboard(), 1000);
+                    produtos[id] = productData;
+                    newBase64Image = '';
+                    renderProdutos();
+                    renderAdminProdutos();
                 } else {
                     showToast(result.message, true);
-                    if (result.message.includes("Senha")) {
-                        currentAdminPassword = "";
-                        setTimeout(() => { closeAdminModal(); openAdminModal(); }, 1500);
-                    }
                 }
             } catch (error) {
-                console.error(error);
-                showToast("Erro ao comunicar com o servidor.", true);
-            } finally {
-                btn.innerHTML = `<i data-lucide="save" class="w-5 h-5"></i> Salvar Alterações`;
-                btn.disabled = false;
-                lucide.createIcons();
+                showToast('Erro ao salvar produto.', true);
             }
         }
 
-        /* =====================================================================
-           ANIMAÇÕES GSAP & SCROLLTRIGGER
-           ===================================================================== */
-        gsap.registerPlugin(ScrollTrigger);
+        async function deleteProduct(productId) {
+            if (!confirm(`Deseja realmente excluir o produto "${produtos[productId]?.title}"?`)) return;
 
-        const tlHero = gsap.timeline();
-        tlHero.fromTo("#hero-logo", { y: -50, opacity: 0, scale: 0.5 }, { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" })
-              .fromTo("#hero-title", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
-              .fromTo("#hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
-              .fromTo("#hero-badge", { scale: 0, rotation: 0 }, { scale: 1, rotation: -2, duration: 0.6, ease: "back.out(2)" }, "-=0.2");
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'deleteProduct',
+                        productId: productId
+                    }),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
 
-        const scrollElements = document.querySelectorAll('[data-scroll]');
-        scrollElements.forEach((el) => {
-            const effect = el.getAttribute('data-scroll');
-            const delay = parseFloat(el.getAttribute('data-delay') || 0);
-
-            let fromVars = { opacity: 0 };
-            let toVars = { 
-                opacity: 1, 
-                duration: 0.8, 
-                delay: delay,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
+                const result = await response.json();
+                if (result.success) {
+                    showToast(result.message);
+                    delete produtos[productId];
+                    renderProdutos();
+                    renderAdminProdutos();
+                } else {
+                    showToast(result.message, true);
                 }
-            };
-
-            switch(effect) {
-                case 'fade-up': fromVars.y = 60; toVars.y = 0; break;
-                case 'fade-right': fromVars.x = -60; toVars.x = 0; break;
-                case 'fade-left': fromVars.x = 60; toVars.x = 0; break;
-                case 'scale-up': fromVars.scale = 0.8; toVars.scale = 1; break;
+            } catch (error) {
+                showToast('Erro ao excluir produto.', true);
             }
+        }
 
-            gsap.fromTo(el, fromVars, toVars);
+        // =============================================
+        // ADMIN - CONFIGURAÇÕES
+        // =============================================
+        function renderAdminConfig() {
+            const content = document.getElementById('admin-content');
+            
+            const configFields = [
+                { key: 'logo', label: 'Logo (URL ou Base64)', type: 'text' },
+                { key: 'nome_empresa', label: 'Nome da Empresa', type: 'text' },
+                { key: 'whatsapp', label: 'WhatsApp (código + número)', type: 'text' },
+                { key: 'whatsapp_link', label: 'Link do WhatsApp', type: 'text' },
+                { key: 'ano_corrente', label: 'Ano Corrente', type: 'text' },
+                { key: 'rodape', label: 'Texto do Rodapé', type: 'text' },
+                { key: 'titulo_hero', label: 'Título do Hero', type: 'text' },
+                { key: 'subtitulo_hero', label: 'Subtítulo do Hero', type: 'text' },
+                { key: 'badge_hero', label: 'Badge do Hero', type: 'text' },
+                { key: 'titulo_secao1', label: 'Título Seção 1', type: 'text' },
+                { key: 'texto_secao1', label: 'Texto Seção 1', type: 'textarea' },
+                { key: 'titulo_materiais', label: 'Título Materiais', type: 'text' },
+                { key: 'subtitulo_materiais', label: 'Subtítulo Materiais', type: 'text' },
+                { key: 'titulo_adesivos', label: 'Título Adesivos', type: 'text' },
+                { key: 'subtitulo_adesivos', label: 'Subtítulo Adesivos', type: 'text' },
+                { key: 'titulo_grandes_formatos', label: 'Título Grandes Formatos', type: 'text' },
+                { key: 'subtitulo_grandes_formatos', label: 'Subtítulo Grandes Formatos', type: 'text' },
+                { key: 'titulo_cta', label: 'Título CTA', type: 'text' },
+                { key: 'texto_cta', label: 'Texto CTA', type: 'textarea' },
+                { key: 'botao_cta', label: 'Botão CTA', type: 'text' },
+                { key: 'texto_voltar', label: 'Botão Voltar', type: 'text' },
+                { key: 'botao_orcamento', label: 'Botão Orçamento', type: 'text' }
+            ];
+
+            let html = `
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600 font-medium">Configurações gerais do site</p>
+                    <button onclick="saveAdminConfig()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                        <i data-lucide="save" class="w-4 h-4 inline"></i> Salvar Tudo
+                    </button>
+                </div>
+                <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2">
+            `;
+
+            configFields.forEach(field => {
+                const value = configs[field.key] || '';
+                html += `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
+                        ${field.type === 'textarea' 
+                            ? `<textarea id="cfg-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
+                            : `<input type="text" id="cfg-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
+                        }
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        async function saveAdminConfig() {
+            const configFields = [
+                'logo', 'nome_empresa', 'whatsapp', 'whatsapp_link', 'ano_corrente', 'rodape',
+                'titulo_hero', 'subtitulo_hero', 'badge_hero',
+                'titulo_secao1', 'texto_secao1',
+                'titulo_materiais', 'subtitulo_materiais',
+                'titulo_adesivos', 'subtitulo_adesivos',
+                'titulo_grandes_formatos', 'subtitulo_grandes_formatos',
+                'titulo_cta', 'texto_cta', 'botao_cta',
+                'texto_voltar', 'botao_orcamento'
+            ];
+
+            const newConfigs = {};
+            configFields.forEach(key => {
+                const el = document.getElementById(`cfg-${key}`);
+                if (el) newConfigs[key] = el.value;
+            });
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'saveConfig',
+                        configs: newConfigs
+                    }),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(result.message);
+                    configs = { ...configs, ...newConfigs };
+                    applyConfigs();
+                } else {
+                    showToast(result.message, true);
+                }
+            } catch (error) {
+                showToast('Erro ao salvar configurações.', true);
+            }
+        }
+
+        // =============================================
+        // ADMIN - CORES
+        // =============================================
+        function renderAdminCores() {
+            const content = document.getElementById('admin-content');
+            
+            const corFields = [
+                { key: 'primaria', label: 'Cor Primária', type: 'color' },
+                { key: 'secundaria', label: 'Cor Secundária', type: 'color' },
+                { key: 'fundo', label: 'Cor de Fundo', type: 'color' },
+                { key: 'texto', label: 'Cor do Texto', type: 'color' },
+                { key: 'texto_claro', label: 'Cor do Texto Claro', type: 'color' },
+                { key: 'whatsapp', label: 'Cor do WhatsApp', type: 'color' },
+                { key: 'destaque', label: 'Cor de Destaque', type: 'color' }
+            ];
+
+            let html = `
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600 font-medium">Cores do site</p>
+                    <button onclick="saveAdminCores()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                        <i data-lucide="save" class="w-4 h-4 inline"></i> Salvar Cores
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2">
+            `;
+
+            corFields.forEach(field => {
+                const value = cores[field.key] || '#000000';
+                html += `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
+                        <div class="flex items-center gap-3">
+                            <input type="color" id="cor-${field.key}" value="${value}" class="w-16 h-16 rounded-lg border-0 cursor-pointer">
+                            <input type="text" id="cor-text-${field.key}" value="${value}" class="flex-1 p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+
+            // Sincronizar color picker com input text
+            corFields.forEach(field => {
+                const picker = document.getElementById(`cor-${field.key}`);
+                const text = document.getElementById(`cor-text-${field.key}`);
+                if (picker && text) {
+                    picker.addEventListener('input', () => text.value = picker.value);
+                    text.addEventListener('input', () => picker.value = text.value);
+                }
+            });
+
+            lucide.createIcons();
+        }
+
+        async function saveAdminCores() {
+            const corFields = ['primaria', 'secundaria', 'fundo', 'texto', 'texto_claro', 'whatsapp', 'destaque'];
+            const newCores = {};
+            corFields.forEach(key => {
+                const el = document.getElementById(`cor-text-${key}`);
+                if (el) newCores[key] = el.value;
+            });
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'saveCores',
+                        cores: newCores
+                    }),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(result.message);
+                    cores = { ...cores, ...newCores };
+                    applyCores();
+                } else {
+                    showToast(result.message, true);
+                }
+            } catch (error) {
+                showToast('Erro ao salvar cores.', true);
+            }
+        }
+
+        // =============================================
+        // ADMIN - TEXTOS
+        // =============================================
+        function renderAdminTextos() {
+            const content = document.getElementById('admin-content');
+            
+            const textoFields = [
+                { key: 'meta_descricao', label: 'Meta Descrição (SEO)', type: 'textarea' },
+                { key: 'titulo_site', label: 'Título do Site (SEO)', type: 'text' },
+                { key: 'footer_texto', label: 'Texto do Footer (SEO)', type: 'textarea' }
+            ];
+
+            let html = `
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600 font-medium">Textos SEO e metadados</p>
+                    <button onclick="saveAdminTextos()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                        <i data-lucide="save" class="w-4 h-4 inline"></i> Salvar Textos
+                    </button>
+                </div>
+                <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2">
+            `;
+
+            textoFields.forEach(field => {
+                const value = textos[field.key] || '';
+                html += `
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
+                        ${field.type === 'textarea' 
+                            ? `<textarea id="txt-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
+                            : `<input type="text" id="txt-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
+                        }
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        async function saveAdminTextos() {
+            const textoFields = ['meta_descricao', 'titulo_site', 'footer_texto'];
+            const newTextos = {};
+            textoFields.forEach(key => {
+                const el = document.getElementById(`txt-${key}`);
+                if (el) newTextos[key] = el.value;
+            });
+
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'saveTextos',
+                        textos: newTextos
+                    }),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(result.message);
+                    textos = { ...textos, ...newTextos };
+                    applyTextos();
+                    applyConfigs();
+                } else {
+                    showToast(result.message, true);
+                }
+            } catch (error) {
+                showToast('Erro ao salvar textos.', true);
+            }
+        }
+
+        // =============================================
+        // FUNÇÃO DE DELETAR PRODUTO (no code.gs)
+        // =============================================
+        // Adicionar no code.gs:
+        /*
+        if (action === "deleteProduct") {
+          const productId = requestData.productId;
+          const data = dbs.sheetProdutos.getDataRange().getValues();
+          let rowIndex = -1;
+          for(let i = 1; i < data.length; i++) {
+            if(data[i][0] === productId) {
+              rowIndex = i + 1;
+              break;
+            }
+          }
+          if (rowIndex > -1) {
+            dbs.sheetProdutos.deleteRow(rowIndex);
+            return ContentService.createTextOutput(JSON.stringify({
+              success: true, 
+              message: "Produto excluído com sucesso!"
+            })).setMimeType(ContentService.MimeType.JSON);
+          }
+          return ContentService.createTextOutput(JSON.stringify({
+            success: false, 
+            message: "Produto não encontrado."
+          })).setMimeType(ContentService.MimeType.JSON);
+        }
+        */
+
+        // =============================================
+        // INICIALIZAÇÃO
+        // =============================================
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadData();
+            lucide.createIcons();
+
+            // GSAP Animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+
+                const tlHero = gsap.timeline();
+                tlHero.fromTo("#hero-logo", { y: -50, opacity: 0, scale: 0.5 }, { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" })
+                      .fromTo("#hero-title", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
+                      .fromTo("#hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
+                      .fromTo("#hero-badge", { scale: 0, rotation: 0 }, { scale: 1, rotation: -2, duration: 0.6, ease: "back.out(2)" }, "-=0.2");
+
+                const scrollElements = document.querySelectorAll('[data-scroll]');
+                scrollElements.forEach((el) => {
+                    const effect = el.getAttribute('data-scroll');
+                    const delay = parseFloat(el.getAttribute('data-delay') || 0);
+
+                    let fromVars = { opacity: 0 };
+                    let toVars = { 
+                        opacity: 1, 
+                        duration: 0.8, 
+                        delay: delay,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    };
+
+                    switch(effect) {
+                        case 'fade-up': fromVars.y = 60; toVars.y = 0; break;
+                        case 'fade-right': fromVars.x = -60; toVars.x = 0; break;
+                        case 'fade-left': fromVars.x = 60; toVars.x = 0; break;
+                        case 'scale-up': fromVars.scale = 0.8; toVars.scale = 1; break;
+                    }
+
+                    gsap.fromTo(el, fromVars, toVars);
+                });
+            }
         });
     </script>
 </body>

@@ -33,8 +33,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Estilos dinâmicos serão injetados via JS */
     </style>
 </head>
 <body class="font-sans antialiased" id="app-body">
@@ -64,72 +62,56 @@
             </div>
         </header>
 
-        <!-- Seção 1: Texto de introdução -->
+        <!-- Seção 1 -->
         <section id="secao1" class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
             <h3 id="secao1-titulo" class="text-3xl md:text-5xl font-bold mb-6" data-scroll="fade-up">Sua campanha merece o melhor.</h3>
             <p id="secao1-texto" class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">
-                Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura. Qualidade, rapidez e impacto visual para você chegar lá.
+                Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura.
             </p>
         </section>
 
-        <!-- Seção 2: Materiais de Campanha -->
+        <!-- Seção 2: Materiais -->
         <section id="secao-materiais" class="py-24 bg-white clip-path-diagonal-reverse relative z-10 -mt-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 pt-20">
-                
                 <div class="mb-16 border-l-4 border-brand-orange pl-4" data-scroll="fade-right">
                     <h2 id="titulo-materiais" class="text-4xl font-black uppercase">Materiais de Campanha</h2>
-                    <p id="subtitulo-materiais" class="text-gray-500 mt-2">Clique no produto para ver detalhes e especificações.</p>
+                    <p id="subtitulo-materiais" class="text-gray-500 mt-2">Clique no produto para ver detalhes.</p>
                 </div>
-
-                <div id="grid-materiais" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Produtos serão injetados via JS -->
-                </div>
+                <div id="grid-materiais" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"></div>
             </div>
         </section>
 
-        <!-- Seção 3: Adesivos & Visibilidade -->
+        <!-- Seção 3: Adesivos -->
         <section id="secao-adesivos" class="py-24 bg-brand-dark text-white relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
-                
                 <div class="mb-16 border-l-4 border-brand-orange pl-4 text-right ml-auto flex flex-col items-end" data-scroll="fade-left">
                     <h2 id="titulo-adesivos" class="text-4xl font-black text-white uppercase">Adesivos & Visibilidade</h2>
                     <p id="subtitulo-adesivos" class="text-gray-400 mt-2">Clique para ver formatos e materiais.</p>
                 </div>
-
-                <div id="grid-adesivos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Produtos serão injetados via JS -->
-                </div>
+                <div id="grid-adesivos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
             </div>
         </section>
 
         <!-- Seção 4: Grandes Formatos -->
         <section id="secao-grandes-formatos" class="py-24 bg-gray-100 overflow-hidden relative">
-            <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-orange opacity-10 rounded-full blur-3xl"></div>
-            <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-brand-dark opacity-5 rounded-full blur-3xl"></div>
-
             <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-                
                 <div class="text-center mb-20" data-scroll="fade-up">
                     <h2 id="titulo-grandes-formatos" class="text-4xl md:text-5xl font-black uppercase inline-block relative">
                         Grandes Formatos
                         <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brand-orange"></div>
                     </h2>
-                    <p id="subtitulo-grandes-formatos" class="text-gray-500 mt-6">Selecione o material desejado para consultar medidas.</p>
+                    <p id="subtitulo-grandes-formatos" class="text-gray-500 mt-6">Selecione o material desejado.</p>
                 </div>
-
-                <div id="grid-grandes-formatos" class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-                    <!-- Produtos serão injetados via JS -->
-                </div>
+                <div id="grid-grandes-formatos" class="flex flex-col lg:flex-row gap-12 items-center justify-center"></div>
             </div>
         </section>
 
-        <!-- CTA Section -->
+        <!-- CTA -->
         <section id="secao-cta" class="py-24 bg-brand-orange text-white text-center px-6 clip-path-diagonal-reverse -mt-10 relative z-20">
             <div class="max-w-4xl mx-auto pt-10">
                 <i data-lucide="printer" class="w-16 h-16 mx-auto mb-6 opacity-90"></i>
                 <h2 id="cta-titulo" class="text-4xl md:text-6xl font-black mb-6 uppercase" data-scroll="scale-up">Pronto para imprimir sua vitória?</h2>
-                <p id="cta-texto" class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.</p>
-                
+                <p id="cta-texto" class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso.</p>
                 <a id="cta-botao" href="#" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark text-white font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-800 transform hover:scale-105 transition-all shadow-2xl">
                     <i data-lucide="message-circle" class="w-6 h-6"></i>
                     Falar com Consultor
@@ -139,48 +121,34 @@
     </div>
 
     <!-- ==========================================
-         VIEW DE DETALHE DO PRODUTO
-         ========================================== -->
+         VIEW DE DETALHE DO PRODUTO         ========================================== -->
     <div id="product-view" class="hidden min-h-screen bg-gray-50 pt-10 pb-24 fade-in">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
-            
             <button onclick="closeProduct()" class="group flex items-center gap-2 font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
                 <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md group-hover:-translate-x-1 transition-transform">
                     <i data-lucide="arrow-left" class="w-5 h-5"></i>
                 </div>
                 <span id="texto-voltar">Voltar para a lista</span>
             </button>
-
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-                
                 <div class="w-full md:w-1/2 bg-gray-100 flex items-center justify-center p-8 relative min-h-[300px]">
-                    <div class="absolute inset-0 bg-brand-orange opacity-5"></div>
                     <img id="detail-image" src="" alt="Produto" class="max-w-full max-h-[500px] object-contain relative z-10 drop-shadow-2xl rounded-xl">
                 </div>
-
                 <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                    <div class="inline-block bg-brand-orange/10 text-brand-orange font-bold px-4 py-1 rounded-full text-sm mb-4 self-start">
-                        Material de Campanha
-                    </div>
-                    
+                    <div class="inline-block bg-brand-orange/10 text-brand-orange font-bold px-4 py-1 rounded-full text-sm mb-4 self-start">Material de Campanha</div>
                     <h2 id="detail-title" class="text-4xl font-black uppercase mb-2">Nome do Produto</h2>
-                    <p id="detail-subtitle" class="text-xl text-gray-500 mb-8 font-medium">Subtítulo atrativo.</p>
-
+                    <p id="detail-subtitle" class="text-xl text-gray-500 mb-8 font-medium">Subtítulo.</p>
                     <div class="space-y-6 flex-1">
                         <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2">
                             <i data-lucide="list-checks" class="text-brand-orange"></i>
                             Especificações Técnicas
                         </h3>
-                        
-                        <ul id="detail-specs" class="space-y-4">
-                            <!-- Injetado via JS -->
-                        </ul>
+                        <ul id="detail-specs" class="space-y-4"></ul>
                     </div>
-
                     <div class="mt-10 pt-8 border-t">
                         <a id="detail-whatsapp" href="#" target="_blank" class="w-full flex items-center justify-center gap-3 bg-brand-orange text-white font-bold text-lg px-8 py-4 rounded-xl hover:bg-orange-600 transform hover:-translate-y-1 transition-all shadow-lg shadow-orange-500/30">
                             <i data-lucide="message-square" class="w-6 h-6"></i>
-                            <span id="botao-orcamento">Solicitar Orçamento deste Material</span>
+                            <span id="botao-orcamento">Solicitar Orçamento</span>
                         </a>
                     </div>
                 </div>
@@ -191,32 +159,26 @@
     <!-- Footer -->
     <footer id="site-footer" class="py-12 text-center pb-24 md:pb-12 relative">
         <div class="max-w-7xl mx-auto px-6">
-            <div id="footer-logo" class="flex justify-center items-center gap-4 mb-6">
-                <!-- Logo será injetado via JS -->
-            </div>
+            <div id="footer-logo" class="flex justify-center items-center gap-4 mb-6"></div>
             <p id="footer-texto">&copy; 2026 Lion's Comunicação Visual. Todos os direitos reservados.</p>
         </div>
-
         <button onclick="openAdminModal()" class="absolute bottom-4 right-4 text-gray-600 hover:text-brand-orange transition-colors opacity-50 hover:opacity-100 p-2">
             <i data-lucide="lock" class="w-5 h-5"></i>
         </button>
     </footer>
 
-    <!-- Botão Flutuante WhatsApp -->
-    <a id="whatsapp-float" href="#" target="_blank" class="fixed bottom-6 right-6 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-110 transition-transform flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <!-- WhatsApp Float -->
+    <a id="whatsapp-float" href="#" target="_blank" class="fixed bottom-6 right-6 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-110 transition-transform flex items-center justify-center" style="background-color: #25D366;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </a>
 
     <!-- ==========================================
          PAINEL DE ADMINISTRAÇÃO
          ========================================== -->
     <div id="admin-overlay" class="fixed inset-0 bg-black/80 z-50 hidden flex justify-center items-center backdrop-blur-sm p-4">
-        
-        <div id="admin-toast" class="absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 opacity-0 -translate-y-10 z-[60]">
-            Mensagem
-        </div>
+        <div id="admin-toast" class="absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 opacity-0 -translate-y-10 z-[60]">Mensagem</div>
 
-        <!-- Modal de Login -->
+        <!-- Login -->
         <div id="admin-login-modal" class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm hidden transform transition-all duration-300 flex-col">
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -238,7 +200,6 @@
                 <button onclick="closeAdminModal()" class="text-gray-500 hover:text-red-500 p-2"><i data-lucide="x"></i></button>
             </div>
             
-            <!-- Abas do Admin -->
             <div class="flex gap-2 mb-4 border-b overflow-x-auto">
                 <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap" data-tab="produtos">
                     <i data-lucide="package" class="w-4 h-4 inline"></i> Produtos
@@ -254,9 +215,7 @@
                 </button>
             </div>
 
-            <div class="overflow-y-auto flex-1 no-scrollbar pr-2" id="admin-content">
-                <!-- Conteúdo será injetado via JS -->
-            </div>
+            <div class="overflow-y-auto flex-1 no-scrollbar pr-2" id="admin-content"></div>
         </div>
     </div>
 
@@ -275,14 +234,38 @@
         let textos = {};
         let produtos = {};
         let currentAdminPassword = "";
-        let newBase64Image = "";
         let editingProductId = null;
 
         // =============================================
-        // CARREGAR DADOS DA PLANILHA
+        // FUNÇÃO PARA UPLOAD DE IMAGEM
+        // =============================================
+        async function uploadImageToDrive(imageData, nomeArquivo, tipo = 'produto') {
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        password: SENHA_ADMIN,
+                        action: 'uploadImage',
+                        imageData: imageData,
+                        nomeArquivo: nomeArquivo,
+                        tipo: tipo
+                    }),
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                });
+
+                const result = await response.json();
+                return result;
+            } catch (error) {
+                console.error('Erro no upload:', error);
+                return { success: false, message: error.toString() };
+            }
+        }
+
+        // =============================================
+        // CARREGAR DADOS
         // =============================================
         async function loadData() {
-            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec") {
+            if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
                 console.warn("Configure a GOOGLE_SHEETS_URL");
                 return;
             }
@@ -345,19 +328,17 @@
 
             // CTA
             document.getElementById('cta-titulo').textContent = configs.titulo_cta || 'Pronto para imprimir sua vitória?';
-            document.getElementById('cta-texto').textContent = configs.texto_cta || 'Faça um orçamento sem compromisso e garanta os melhores materiais para 2026.';
+            document.getElementById('cta-texto').textContent = configs.texto_cta || 'Faça um orçamento sem compromisso.';
             document.getElementById('cta-botao').innerHTML = `
                 <i data-lucide="message-circle" class="w-6 h-6"></i>
                 ${configs.botao_cta || 'Falar com Consultor'}
             `;
 
-            // Outros textos
             document.getElementById('texto-voltar').textContent = configs.texto_voltar || 'Voltar para a lista';
-            document.getElementById('botao-orcamento').textContent = configs.botao_orcamento || 'Solicitar Orçamento deste Material';
+            document.getElementById('botao-orcamento').textContent = configs.botao_orcamento || 'Solicitar Orçamento';
             document.getElementById('footer-texto').textContent = 
                 `© ${configs.ano_corrente || '2026'} ${configs.nome_empresa || 'Lion\'s Comunicação Visual'}. ${configs.rodape || 'Todos os direitos reservados.'}`;
 
-            // Título do site
             if (textos.titulo_site) {
                 document.getElementById('site-title').textContent = textos.titulo_site;
             }
@@ -372,7 +353,6 @@
             const style = document.createElement('style');
             let css = '';
             
-            // Cores principais
             if (cores.primaria) {
                 css += `
                     .bg-brand-orange { background-color: ${cores.primaria} !important; }
@@ -400,36 +380,20 @@
                 `;
             }
 
-            if (cores.whatsapp) {
-                css += `
-                    .bg-whatsapp { background-color: ${cores.whatsapp} !important; }
-                `;
-            }
-
-            // Header
             const header = document.getElementById('hero-header');
             if (header && cores.primaria) {
                 header.style.backgroundColor = cores.primaria;
             }
 
-            // CTA
             const cta = document.getElementById('secao-cta');
             if (cta && cores.primaria) {
                 cta.style.backgroundColor = cores.primaria;
-            }
-
-            // Textos
-            if (cores.texto) {
-                css += `
-                    .text-brand-dark { color: ${cores.texto} !important; }
-                `;
             }
 
             if (cores.fundo) {
                 document.getElementById('app-body').style.backgroundColor = cores.fundo;
             }
 
-            // Injetar CSS
             const oldStyle = document.querySelector('#dynamic-colors');
             if (oldStyle) oldStyle.remove();
             style.id = 'dynamic-colors';
@@ -449,7 +413,6 @@
                 document.title = textos.titulo_site;
             }
 
-            // Seções
             document.getElementById('secao1-titulo').textContent = configs.titulo_secao1 || 'Sua campanha merece o melhor.';
             document.getElementById('secao1-texto').textContent = configs.texto_secao1 || 'Oferecemos uma linha completa de materiais gráficos...';
             
@@ -475,25 +438,13 @@
             gridAdesivos.innerHTML = '';
             gridGrandes.innerHTML = '';
 
-            const categorias = {
-                'santinho': 'materiais',
-                'cartao': 'materiais',
-                'colinha': 'materiais',
-                'jornal': 'materiais',
-                'adesivos': 'adesivos',
-                'grandes_formatos': 'grandes'
-            };
-
             Object.keys(produtos).forEach(id => {
                 const prod = produtos[id];
                 const categoria = prod.categoria || 'geral';
                 
-                // Determinar qual grid
-                let grid;
-                let cardClass = '';
-                let layout = '';
+                let grid, cardClass, layout;
 
-                if (categoria === 'santinho' || categoria === 'cartao' || categoria === 'colinha' || categoria === 'jornal' || categoria === 'materiais') {
+                if (categoria === 'materiais') {
                     grid = gridMateriais;
                     cardClass = 'bg-gray-50 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100';
                     layout = `
@@ -546,7 +497,6 @@
                 }
             });
 
-            // Se grids estiverem vazios, mostrar placeholder
             if (gridMateriais.children.length === 0) {
                 gridMateriais.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">Nenhum material cadastrado.</div>`;
             }
@@ -561,7 +511,7 @@
         }
 
         // =============================================
-        // ABRIR PRODUTO (DETALHE)
+        // ABRIR PRODUTO
         // =============================================
         function openProduct(productId) {
             const prod = produtos[productId];
@@ -613,7 +563,7 @@
         }
 
         // =============================================
-        // ADMIN - LOGIN E DASHBOARD
+        // ADMIN
         // =============================================
         function openAdminModal() {
             if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") {
@@ -636,7 +586,6 @@
             document.getElementById('admin-login-modal').classList.remove('flex');
             document.getElementById('admin-dashboard-modal').classList.add('hidden');
             document.getElementById('admin-dashboard-modal').classList.remove('flex');
-            newBase64Image = "";
         }
 
         function loginAdmin() {
@@ -669,15 +618,11 @@
             }, 3000);
         }
 
-        // =============================================
-        // ADMIN - ABAS
-        // =============================================
         let currentAdminTab = 'produtos';
 
         function showAdminTab(tab) {
             currentAdminTab = tab;
             
-            // Atualizar abas
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('border-brand-orange', 'text-brand-orange');
                 btn.classList.add('text-gray-500');
@@ -800,7 +745,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Ordem (número menor = aparece primeiro)</label>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Ordem</label>
                             <input type="number" id="form-product-ordem" value="${prod.ordem || 999}" 
                                    class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-brand-orange">
                         </div>
@@ -825,83 +770,120 @@
                             <input type="file" id="form-product-image" accept="image/*" 
                                    class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
                             <div id="form-image-preview" class="mt-2"></div>
+                            <div id="form-upload-status" class="mt-2 text-sm"></div>
                         </div>
 
-                        <button onclick="saveAdminProduct()" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors">
+                        <button onclick="saveAdminProduct()" id="btn-save-product" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors">
                             <i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto
                         </button>
                     </div>
                 </div>
             `;
 
-            // Preview da imagem
-            document.getElementById('form-product-image').addEventListener('change', function(e) {
+            let uploadedImageUrl = '';
+
+            document.getElementById('form-product-image').addEventListener('change', async function(e) {
                 const file = e.target.files[0];
                 if (!file) return;
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const preview = document.getElementById('form-image-preview');
-                    preview.innerHTML = `<img src="${event.target.result}" class="w-32 h-32 object-cover rounded-lg border">`;
-                    newBase64Image = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
 
-            lucide.createIcons();
-        }
+                const status = document.getElementById('form-upload-status');
+                status.innerHTML = '⏳ Enviando imagem...';
+                status.className = 'text-blue-500 text-sm mt-2';
 
-        async function saveAdminProduct() {
-            const id = document.getElementById('form-product-id').value.trim();
-            if (!id) {
-                showToast('Informe um ID para o produto.', true);
-                return;
-            }
-
-            const title = document.getElementById('form-product-title').value.trim() || id;
-            const subtitle = document.getElementById('form-product-subtitle').value.trim();
-            const categoria = document.getElementById('form-product-categoria').value;
-            const ordem = parseInt(document.getElementById('form-product-ordem').value) || 999;
-            const ativo = document.getElementById('form-product-ativo').value;
-
-            const specsText = document.getElementById('form-product-specs').value;
-            const specs = [];
-            specsText.split('\n').forEach(line => {
-                if (line.trim()) {
-                    const parts = line.split(':');
-                    if (parts.length >= 2) {
-                        specs.push({ label: parts[0].trim(), value: parts.slice(1).join(':').trim() });
-                    }
+                try {
+                    const reader = new FileReader();
+                    reader.onload = async function(event) {
+                        const base64 = event.target.result;
+                        const nomeArquivo = `${document.getElementById('form-product-id').value || 'produto'}_${Date.now()}.png`;
+                        
+                        const result = await uploadImageToDrive(base64, nomeArquivo, 'produto');
+                        
+                        if (result.success) {
+                            uploadedImageUrl = result.url;
+                            status.innerHTML = '✅ Imagem enviada com sucesso!';
+                            status.className = 'text-green-500 text-sm mt-2';
+                            
+                            const preview = document.getElementById('form-image-preview');
+                            preview.innerHTML = `<img src="${uploadedImageUrl}" class="w-32 h-32 object-cover rounded-lg border">`;
+                        } else {
+                            status.innerHTML = '❌ ' + result.message;
+                            status.className = 'text-red-500 text-sm mt-2';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } catch (error) {
+                    status.innerHTML = '❌ Erro ao enviar: ' + error.message;
+                    status.className = 'text-red-500 text-sm mt-2';
                 }
             });
 
-            const image = newBase64Image || (produtos[id]?.image || '');
+            // Sobrescrever o save para incluir a URL da imagem
+            const originalSave = window.saveAdminProduct;
+            window.saveAdminProduct = async function() {
+                const btn = document.getElementById('btn-save-product');
+                btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 inline animate-spin"></i> Salvando...`;
+                btn.disabled = true;
 
-            const productData = { id, title, subtitle, specs, image, categoria, ordem, ativo };
+                const id = document.getElementById('form-product-id').value.trim();
+                if (!id) {
+                    showToast('Informe um ID para o produto.', true);
+                    btn.innerHTML = `<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto`;
+                    btn.disabled = false;
+                    return;
+                }
 
-            try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        password: SENHA_ADMIN,
-                        action: 'saveProduct',
-                        product: productData
-                    }),
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                const title = document.getElementById('form-product-title').value.trim() || id;
+                const subtitle = document.getElementById('form-product-subtitle').value.trim();
+                const categoria = document.getElementById('form-product-categoria').value;
+                const ordem = parseInt(document.getElementById('form-product-ordem').value) || 999;
+                const ativo = document.getElementById('form-product-ativo').value;
+
+                const specsText = document.getElementById('form-product-specs').value;
+                const specs = [];
+                specsText.split('\n').forEach(line => {
+                    if (line.trim()) {
+                        const parts = line.split(':');
+                        if (parts.length >= 2) {
+                            specs.push({ label: parts[0].trim(), value: parts.slice(1).join(':').trim() });
+                        }
+                    }
                 });
 
-                const result = await response.json();
-                if (result.success) {
-                    showToast(result.message);
-                    produtos[id] = productData;
-                    newBase64Image = '';
-                    renderProdutos();
-                    renderAdminProdutos();
-                } else {
-                    showToast(result.message, true);
+                // Usar a URL enviada ou a já existente
+                const image = uploadedImageUrl || (produtos[id]?.image || '');
+
+                const productData = { id, title, subtitle, specs, image, categoria, ordem, ativo };
+
+                try {
+                    const response = await fetch(GOOGLE_SHEETS_URL, {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            password: SENHA_ADMIN,
+                            action: 'saveProduct',
+                            product: productData
+                        }),
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        showToast(result.message);
+                        produtos[id] = productData;
+                        renderProdutos();
+                        renderAdminProdutos();
+                    } else {
+                        showToast(result.message, true);
+                    }
+                } catch (error) {
+                    showToast('Erro ao salvar produto.', true);
+                } finally {
+                    btn.innerHTML = `<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto`;
+                    btn.disabled = false;
+                    lucide.createIcons();
                 }
-            } catch (error) {
-                showToast('Erro ao salvar produto.', true);
-            }
+            };
+
+            lucide.createIcons();
         }
 
         async function deleteProduct(productId) {
@@ -933,13 +915,13 @@
         }
 
         // =============================================
-        // ADMIN - CONFIGURAÇÕES (CORRIGIDO)
+        // ADMIN - CONFIGURAÇÕES
         // =============================================
         function renderAdminConfig() {
             const content = document.getElementById('admin-content');
             
             const configFields = [
-                { key: 'logo', label: 'Logo (Base64 - cole o código completo)', type: 'textarea' },
+                { key: 'logo', label: 'Logo do Site', type: 'image' },
                 { key: 'nome_empresa', label: 'Nome da Empresa', type: 'text' },
                 { key: 'whatsapp', label: 'WhatsApp (código + número)', type: 'text' },
                 { key: 'whatsapp_link', label: 'Link do WhatsApp', type: 'text' },
@@ -975,9 +957,8 @@
 
             configFields.forEach(field => {
                 const value = configs[field.key] || '';
-                // Para o campo logo, mostrar uma prévia da imagem se existir
                 let preview = '';
-                if (field.key === 'logo' && value && value.startsWith('data:image')) {
+                if (field.type === 'image' && value) {
                     preview = `<img src="${value}" class="w-24 h-24 object-contain rounded-lg border mb-2 bg-gray-100">`;
                 }
                 
@@ -985,17 +966,62 @@
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
                         ${preview}
-                        ${field.type === 'textarea' 
-                            ? `<textarea id="cfg-${field.key}" rows="${field.key === 'logo' ? '6' : '3'}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange font-mono text-sm">${value}</textarea>`
+                        ${field.type === 'image' ? `
+                            <input type="file" id="cfg-${field.key}" accept="image/*" 
+                                   class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
+                            <div id="cfg-${field.key}-preview" class="mt-2"></div>
+                            <div id="cfg-${field.key}-status" class="mt-1 text-sm"></div>
+                            <input type="hidden" id="cfg-${field.key}" value="${value}">
+                        ` : field.type === 'textarea' 
+                            ? `<textarea id="cfg-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
                             : `<input type="text" id="cfg-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
                         }
-                        ${field.key === 'logo' ? `<p class="text-xs text-gray-400 mt-1">⚠️ Cole o código Base64 completo da imagem (começa com "data:image/...")</p>` : ''}
                     </div>
                 `;
             });
 
             html += `</div>`;
             content.innerHTML = html;
+
+            // Configurar upload de imagem para logo
+            const logoInput = document.getElementById('cfg-logo');
+            if (logoInput) {
+                logoInput.addEventListener('change', async function(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    const status = document.getElementById('cfg-logo-status');
+                    status.innerHTML = '⏳ Enviando logo...';
+                    status.className = 'text-blue-500 text-sm mt-1';
+
+                    try {
+                        const reader = new FileReader();
+                        reader.onload = async function(event) {
+                            const base64 = event.target.result;
+                            const nomeArquivo = `logo_${Date.now()}.png`;
+                            
+                            const result = await uploadImageToDrive(base64, nomeArquivo, 'config');
+                            
+                            if (result.success) {
+                                document.getElementById('cfg-logo').value = result.url;
+                                status.innerHTML = '✅ Logo enviada!';
+                                status.className = 'text-green-500 text-sm mt-1';
+                                
+                                const preview = document.getElementById('cfg-logo-preview');
+                                preview.innerHTML = `<img src="${result.url}" class="w-24 h-24 object-contain rounded-lg border">`;
+                            } else {
+                                status.innerHTML = '❌ ' + result.message;
+                                status.className = 'text-red-500 text-sm mt-1';
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    } catch (error) {
+                        status.innerHTML = '❌ Erro: ' + error.message;
+                        status.className = 'text-red-500 text-sm mt-1';
+                    }
+                });
+            }
+
             lucide.createIcons();
         }
 
@@ -1014,7 +1040,9 @@
             const newConfigs = {};
             configFields.forEach(key => {
                 const el = document.getElementById(`cfg-${key}`);
-                if (el) newConfigs[key] = el.value;
+                if (el) {
+                    newConfigs[key] = el.value;
+                }
             });
 
             try {
@@ -1033,6 +1061,7 @@
                     showToast(result.message);
                     configs = { ...configs, ...newConfigs };
                     applyConfigs();
+                    await loadData();
                 } else {
                     showToast(result.message, true);
                 }
@@ -1048,13 +1077,13 @@
             const content = document.getElementById('admin-content');
             
             const corFields = [
-                { key: 'primaria', label: 'Cor Primária', type: 'color' },
-                { key: 'secundaria', label: 'Cor Secundária', type: 'color' },
-                { key: 'fundo', label: 'Cor de Fundo', type: 'color' },
-                { key: 'texto', label: 'Cor do Texto', type: 'color' },
-                { key: 'texto_claro', label: 'Cor do Texto Claro', type: 'color' },
-                { key: 'whatsapp', label: 'Cor do WhatsApp', type: 'color' },
-                { key: 'destaque', label: 'Cor de Destaque', type: 'color' }
+                { key: 'primaria', label: 'Cor Primária' },
+                { key: 'secundaria', label: 'Cor Secundária' },
+                { key: 'fundo', label: 'Cor de Fundo' },
+                { key: 'texto', label: 'Cor do Texto' },
+                { key: 'texto_claro', label: 'Cor do Texto Claro' },
+                { key: 'whatsapp', label: 'Cor do WhatsApp' },
+                { key: 'destaque', label: 'Cor de Destaque' }
             ];
 
             let html = `
@@ -1083,7 +1112,6 @@
             html += `</div>`;
             content.innerHTML = html;
 
-            // Sincronizar color picker com input text
             corFields.forEach(field => {
                 const picker = document.getElementById(`cor-${field.key}`);
                 const text = document.getElementById(`cor-text-${field.key}`);
@@ -1208,7 +1236,6 @@
             await loadData();
             lucide.createIcons();
 
-            // GSAP Animations
             if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
 

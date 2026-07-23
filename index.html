@@ -33,6 +33,14 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .lazy-load.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-sans antialiased" id="app-body">
@@ -121,7 +129,8 @@
     </div>
 
     <!-- ==========================================
-         VIEW DE DETALHE DO PRODUTO         ========================================== -->
+         VIEW DE DETALHE DO PRODUTO
+         ========================================== -->
     <div id="product-view" class="hidden min-h-screen bg-gray-50 pt-10 pb-24 fade-in">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             <button onclick="closeProduct()" class="group flex items-center gap-2 font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
@@ -223,25 +232,26 @@
         // =============================================
         // CONFIGURAÇÃO
         // =============================================
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec";
-        const SENHA_ADMIN = "lions2026";
+        var GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby4DCaparAyZACojY5GlUNBNv-lBeXpv7nucukNKoQ_UFn0236XRWRyGOVy0fSNpDmr7g/exec";
+        var SENHA_ADMIN = "lions2026";
 
         // =============================================
         // ESTADO GLOBAL
         // =============================================
-        let configs = {};
-        let cores = {};
-        let textos = {};
-        let produtos = {};
-        let currentAdminPassword = "";
-        let editingProductId = null;
+        var configs = {};
+        var cores = {};
+        var textos = {};
+        var produtos = {};
+        var currentAdminPassword = "";
+        var editingProductId = null;
 
         // =============================================
         // FUNÇÃO PARA UPLOAD DE IMAGEM
         // =============================================
-        async function uploadImageToDrive(imageData, nomeArquivo, tipo = 'produto') {
+        async function uploadImageToDrive(imageData, nomeArquivo, tipo) {
+            tipo = tipo || 'produto';
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                var response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     body: JSON.stringify({
                         password: SENHA_ADMIN,
@@ -253,7 +263,7 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
 
-                const result = await response.json();
+                var result = await response.json();
                 return result;
             } catch (error) {
                 console.error('Erro no upload:', error);
@@ -271,8 +281,8 @@
             }
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL);
-                const data = await response.json();
+                var response = await fetch(GOOGLE_SHEETS_URL);
+                var data = await response.json();
                 
                 configs = data.configs || {};
                 cores = data.cores || {};
@@ -294,14 +304,12 @@
         // APLICAR CONFIGURAÇÕES
         // =============================================
         function applyConfigs() {
-            // Logo
-            const logoContainer = document.getElementById('hero-logo');
+            var logoContainer = document.getElementById('hero-logo');
             if (logoContainer && configs.logo) {
-                logoContainer.innerHTML = `<img src="${configs.logo}" alt="${configs.nome_empresa || 'Logo'}" class="w-full h-full object-contain">`;
+                logoContainer.innerHTML = '<img src="' + configs.logo + '" alt="' + (configs.nome_empresa || 'Logo') + '" class="w-full h-full object-contain">';
             }
 
-            // Footer Logo
-            const footerLogo = document.getElementById('footer-logo');
+            var footerLogo = document.getElementById('footer-logo');
             if (footerLogo && configs.logo) {
                 footerLogo.innerHTML = `
                     <img src="${configs.logo}" alt="${configs.nome_empresa || 'Logo'}" class="w-10 h-10 object-contain">
@@ -309,24 +317,23 @@
                 `;
             }
 
-            // Hero
             document.getElementById('hero-title').textContent = configs.titulo_hero || 'LION\'S';
             document.getElementById('hero-subtitle').textContent = configs.subtitulo_hero || 'COMUNICAÇÃO VISUAL';
             document.getElementById('hero-badge').textContent = configs.badge_hero || 'ELEIÇÕES 2026';
 
-            // WhatsApp
-            const numero = configs.whatsapp || '5500000000000';
-            const linkBase = configs.whatsapp_link || 'https://wa.me/';
+            var numero = configs.whatsapp || '5500000000000';
+            var linkBase = configs.whatsapp_link || 'https://wa.me/';
             
-            document.querySelectorAll('[id^="whatsapp"]').forEach(el => {
+            var whatsappElements = document.querySelectorAll('[id^="whatsapp"]');
+            for (var i = 0; i < whatsappElements.length; i++) {
+                var el = whatsappElements[i];
                 if (el.tagName === 'A') {
-                    el.href = `${linkBase}${numero}`;
+                    el.href = linkBase + numero;
                 }
-            });
+            }
             
-            document.getElementById('cta-botao').href = `${linkBase}${numero}`;
+            document.getElementById('cta-botao').href = linkBase + numero;
 
-            // CTA
             document.getElementById('cta-titulo').textContent = configs.titulo_cta || 'Pronto para imprimir sua vitória?';
             document.getElementById('cta-texto').textContent = configs.texto_cta || 'Faça um orçamento sem compromisso.';
             document.getElementById('cta-botao').innerHTML = `
@@ -337,7 +344,7 @@
             document.getElementById('texto-voltar').textContent = configs.texto_voltar || 'Voltar para a lista';
             document.getElementById('botao-orcamento').textContent = configs.botao_orcamento || 'Solicitar Orçamento';
             document.getElementById('footer-texto').textContent = 
-                `© ${configs.ano_corrente || '2026'} ${configs.nome_empresa || 'Lion\'s Comunicação Visual'}. ${configs.rodape || 'Todos os direitos reservados.'}`;
+                '© ' + (configs.ano_corrente || '2026') + ' ' + (configs.nome_empresa || 'Lion\'s Comunicação Visual') + '. ' + (configs.rodape || 'Todos os direitos reservados.');
 
             if (textos.titulo_site) {
                 document.getElementById('site-title').textContent = textos.titulo_site;
@@ -350,8 +357,8 @@
         // APLICAR CORES
         // =============================================
         function applyCores() {
-            const style = document.createElement('style');
-            let css = '';
+            var style = document.createElement('style');
+            var css = '';
             
             if (cores.primaria) {
                 css += `
@@ -380,12 +387,12 @@
                 `;
             }
 
-            const header = document.getElementById('hero-header');
+            var header = document.getElementById('hero-header');
             if (header && cores.primaria) {
                 header.style.backgroundColor = cores.primaria;
             }
 
-            const cta = document.getElementById('secao-cta');
+            var cta = document.getElementById('secao-cta');
             if (cta && cores.primaria) {
                 cta.style.backgroundColor = cores.primaria;
             }
@@ -394,7 +401,7 @@
                 document.getElementById('app-body').style.backgroundColor = cores.fundo;
             }
 
-            const oldStyle = document.querySelector('#dynamic-colors');
+            var oldStyle = document.querySelector('#dynamic-colors');
             if (oldStyle) oldStyle.remove();
             style.id = 'dynamic-colors';
             style.textContent = css;
@@ -406,7 +413,8 @@
         // =============================================
         function applyTextos() {
             if (textos.meta_descricao) {
-                document.querySelector('meta[name="description"]')?.setAttribute('content', textos.meta_descricao);
+                var metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', textos.meta_descricao);
             }
 
             if (textos.titulo_site) {
@@ -430,19 +438,21 @@
         // RENDERIZAR PRODUTOS
         // =============================================
         function renderProdutos() {
-            const gridMateriais = document.getElementById('grid-materiais');
-            const gridAdesivos = document.getElementById('grid-adesivos');
-            const gridGrandes = document.getElementById('grid-grandes-formatos');
+            var gridMateriais = document.getElementById('grid-materiais');
+            var gridAdesivos = document.getElementById('grid-adesivos');
+            var gridGrandes = document.getElementById('grid-grandes-formatos');
             
             gridMateriais.innerHTML = '';
             gridAdesivos.innerHTML = '';
             gridGrandes.innerHTML = '';
 
-            Object.keys(produtos).forEach(id => {
-                const prod = produtos[id];
-                const categoria = prod.categoria || 'geral';
+            var keys = Object.keys(produtos);
+            for (var i = 0; i < keys.length; i++) {
+                var id = keys[i];
+                var prod = produtos[id];
+                var categoria = prod.categoria || 'geral';
                 
-                let grid, cardClass, layout;
+                var grid, cardClass, layout;
 
                 if (categoria === 'materiais') {
                     grid = gridMateriais;
@@ -451,7 +461,8 @@
                         <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
                             <img src="${prod.image || 'https://placehold.co/400x533/f4f4f5/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 lazy-load"
+                                 loading="lazy">
                         </div>
                         <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">${prod.title}</h4>
                         <p class="text-sm text-gray-600">Ver detalhes →</p>
@@ -463,7 +474,8 @@
                         <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
                             <img src="${prod.image || 'https://placehold.co/600x300/1f2937/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform lazy-load"
+                                 loading="lazy">
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-center">
                             <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
@@ -480,7 +492,8 @@
                         <div class="relative w-full aspect-square mb-6 mx-auto bg-white rounded-full shadow-xl flex items-center justify-center p-8 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 ring-4 ring-transparent group-hover:ring-brand-orange">
                             <img src="${prod.image || 'https://placehold.co/400x400/fff/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform">
+                                 class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform lazy-load"
+                                 loading="lazy">
                         </div>
                         <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">${prod.title}</h3>
                         <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
@@ -488,23 +501,31 @@
                 }
 
                 if (grid) {
-                    const div = document.createElement('div');
-                    div.className = `product-card cursor-pointer group ${cardClass}`;
+                    var div = document.createElement('div');
+                    div.className = 'product-card cursor-pointer group ' + cardClass;
                     div.setAttribute('data-product', id);
-                    div.onclick = () => openProduct(id);
+                    div.onclick = (function(id) {
+                        return function() { openProduct(id); };
+                    })(id);
                     div.innerHTML = layout;
                     grid.appendChild(div);
                 }
-            });
+            }
 
             if (gridMateriais.children.length === 0) {
-                gridMateriais.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">Nenhum material cadastrado.</div>`;
+                gridMateriais.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Nenhum material cadastrado.</div>';
             }
             if (gridAdesivos.children.length === 0) {
-                gridAdesivos.innerHTML = `<div class="col-span-full text-center text-gray-400 py-10">Nenhum adesivo cadastrado.</div>`;
+                gridAdesivos.innerHTML = '<div class="col-span-full text-center text-gray-400 py-10">Nenhum adesivo cadastrado.</div>';
             }
             if (gridGrandes.children.length === 0) {
-                gridGrandes.innerHTML = `<div class="col-span-full text-center text-gray-500 py-10">Nenhum grande formato cadastrado.</div>`;
+                gridGrandes.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Nenhum grande formato cadastrado.</div>';
+            }
+
+            // Lazy load images
+            var lazyImages = document.querySelectorAll('.lazy-load');
+            for (var i = 0; i < lazyImages.length; i++) {
+                lazyImages[i].classList.add('loaded');
             }
 
             lucide.createIcons();
@@ -514,21 +535,22 @@
         // ABRIR PRODUTO
         // =============================================
         function openProduct(productId) {
-            const prod = produtos[productId];
+            var prod = produtos[productId];
             if (!prod) return;
 
             document.getElementById('detail-title').textContent = prod.title;
             document.getElementById('detail-subtitle').textContent = prod.subtitle || '';
             
-            const detailImage = document.getElementById('detail-image');
+            var detailImage = document.getElementById('detail-image');
             detailImage.src = prod.image || 'https://placehold.co/600x600/f4f4f5/f26522?text=' + prod.title;
 
-            const specsContainer = document.getElementById('detail-specs');
+            var specsContainer = document.getElementById('detail-specs');
             specsContainer.innerHTML = '';
             
             if (prod.specs && prod.specs.length > 0) {
-                prod.specs.forEach(spec => {
-                    const li = document.createElement('li');
+                for (var i = 0; i < prod.specs.length; i++) {
+                    var spec = prod.specs[i];
+                    var li = document.createElement('li');
                     li.className = "flex items-start gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100";
                     li.innerHTML = `
                         <i data-lucide="check-circle-2" class="text-green-500 w-5 h-5 mt-0.5 flex-shrink-0"></i>
@@ -538,16 +560,16 @@
                         </div>
                     `;
                     specsContainer.appendChild(li);
-                });
+                }
             } else {
                 specsContainer.innerHTML = '<li class="text-gray-500">Detalhes sob consulta.</li>';
             }
 
             lucide.createIcons();
 
-            const numero = configs.whatsapp || '5500000000000';
-            const msg = encodeURIComponent(`Olá! Gostaria de fazer um orçamento para: *${prod.title}*. Pode me ajudar?`);
-            document.getElementById('detail-whatsapp').href = `https://wa.me/${numero}?text=${msg}`;
+            var numero = configs.whatsapp || '5500000000000';
+            var msg = encodeURIComponent('Olá! Gostaria de fazer um orçamento para: *' + prod.title + '*. Pode me ajudar?');
+            document.getElementById('detail-whatsapp').href = 'https://wa.me/' + numero + '?text=' + msg;
 
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('product-view').classList.remove('hidden');
@@ -589,7 +611,7 @@
         }
 
         function loginAdmin() {
-            const pwd = document.getElementById('admin-password').value;
+            var pwd = document.getElementById('admin-password').value;
             if (pwd.trim() === "") {
                 showToast("Digite a senha!", true);
                 return;
@@ -605,34 +627,37 @@
             showDashboard();
         }
 
-        function showToast(message, isError = false) {
-            const toast = document.getElementById('admin-toast');
+        function showToast(message, isError) {
+            isError = isError || false;
+            var toast = document.getElementById('admin-toast');
             toast.textContent = message;
-            toast.className = `absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 z-[60] ${isError ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`;
+            toast.className = 'absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 z-[60] ' + (isError ? 'bg-red-500 text-white' : 'bg-green-500 text-white');
             toast.style.opacity = '1';
             toast.style.transform = 'translate(-50%, 0)';
             
-            setTimeout(() => {
+            setTimeout(function() {
                 toast.style.opacity = '0';
                 toast.style.transform = 'translate(-50%, -40px)';
             }, 3000);
         }
 
-        let currentAdminTab = 'produtos';
+        var currentAdminTab = 'produtos';
 
         function showAdminTab(tab) {
             currentAdminTab = tab;
             
-            document.querySelectorAll('.tab-btn').forEach(btn => {
+            var tabBtns = document.querySelectorAll('.tab-btn');
+            for (var i = 0; i < tabBtns.length; i++) {
+                var btn = tabBtns[i];
                 btn.classList.remove('border-brand-orange', 'text-brand-orange');
                 btn.classList.add('text-gray-500');
                 if (btn.dataset.tab === tab) {
                     btn.classList.add('border-brand-orange', 'text-brand-orange');
                     btn.classList.remove('text-gray-500');
                 }
-            });
+            }
 
-            const content = document.getElementById('admin-content');
+            var content = document.getElementById('admin-content');
             
             if (tab === 'produtos') {
                 renderAdminProdutos();
@@ -646,7 +671,7 @@
         }
 
         function showDashboard() {
-            const modal = document.getElementById('admin-dashboard-modal');
+            var modal = document.getElementById('admin-dashboard-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             showAdminTab('produtos');
@@ -657,8 +682,8 @@
         // ADMIN - PRODUTOS
         // =============================================
         function renderAdminProdutos() {
-            const content = document.getElementById('admin-content');
-            let html = `
+            var content = document.getElementById('admin-content');
+            var html = `
                 <div class="flex justify-between items-center mb-4">
                     <p class="text-gray-600 font-medium">Gerenciar produtos do site</p>
                     <button onclick="openProductForm()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors flex items-center gap-2">
@@ -668,9 +693,11 @@
                 <div class="space-y-3">
             `;
 
-            Object.keys(produtos).forEach(id => {
-                const p = produtos[id];
-                const imgSrc = p.image || 'https://placehold.co/100x100/eee/999?text=IMG';
+            var keys = Object.keys(produtos);
+            for (var i = 0; i < keys.length; i++) {
+                var id = keys[i];
+                var p = produtos[id];
+                var imgSrc = p.image || 'https://placehold.co/100x100/eee/999?text=IMG';
                 html += `
                     <div class="flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-xl hover:border-brand-orange transition-colors">
                         <div class="flex items-center gap-4">
@@ -690,23 +717,29 @@
                         </div>
                     </div>
                 `;
-            });
+            }
 
-            html += `</div>`;
+            html += '</div>';
             content.innerHTML = html;
             lucide.createIcons();
         }
 
-        function openProductForm(productId = null) {
+        function openProductForm(productId) {
+            productId = productId || null;
             editingProductId = productId;
-            const content = document.getElementById('admin-content');
+            var content = document.getElementById('admin-content');
             
-            let prod = { title: '', subtitle: '', specs: [], image: '', categoria: 'geral', ordem: 999, ativo: 'SIM' };
+            var prod = { title: '', subtitle: '', specs: [], image: '', categoria: 'geral', ordem: 999, ativo: 'SIM' };
             if (productId && produtos[productId]) {
                 prod = produtos[productId];
             }
 
-            const specsText = prod.specs ? prod.specs.map(s => `${s.label}: ${s.value}`).join('\n') : '';
+            var specsText = '';
+            if (prod.specs) {
+                for (var i = 0; i < prod.specs.length; i++) {
+                    specsText += prod.specs[i].label + ': ' + prod.specs[i].value + '\n';
+                }
+            }
 
             content.innerHTML = `
                 <div class="bg-white p-6 rounded-xl border">
@@ -766,7 +799,7 @@
 
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-1">Imagem</label>
-                            ${prod.image ? `<img src="${prod.image}" class="w-32 h-32 object-cover rounded-lg mb-2 border">` : ''}
+                            ${prod.image ? '<img src="' + prod.image + '" class="w-32 h-32 object-cover rounded-lg mb-2 border">' : ''}
                             <input type="file" id="form-product-image" accept="image/*" 
                                    class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
                             <div id="form-image-preview" class="mt-2"></div>
@@ -780,31 +813,32 @@
                 </div>
             `;
 
-            let uploadedImageUrl = '';
+            var uploadedImageUrl = '';
+            var self = this;
 
             document.getElementById('form-product-image').addEventListener('change', async function(e) {
-                const file = e.target.files[0];
+                var file = e.target.files[0];
                 if (!file) return;
 
-                const status = document.getElementById('form-upload-status');
+                var status = document.getElementById('form-upload-status');
                 status.innerHTML = '⏳ Enviando imagem...';
                 status.className = 'text-blue-500 text-sm mt-2';
 
                 try {
-                    const reader = new FileReader();
+                    var reader = new FileReader();
                     reader.onload = async function(event) {
-                        const base64 = event.target.result;
-                        const nomeArquivo = `${document.getElementById('form-product-id').value || 'produto'}_${Date.now()}.png`;
+                        var base64 = event.target.result;
+                        var nomeArquivo = (document.getElementById('form-product-id').value || 'produto') + '_' + Date.now() + '.png';
                         
-                        const result = await uploadImageToDrive(base64, nomeArquivo, 'produto');
+                        var result = await uploadImageToDrive(base64, nomeArquivo, 'produto');
                         
                         if (result.success) {
                             uploadedImageUrl = result.url;
                             status.innerHTML = '✅ Imagem enviada com sucesso!';
                             status.className = 'text-green-500 text-sm mt-2';
                             
-                            const preview = document.getElementById('form-image-preview');
-                            preview.innerHTML = `<img src="${uploadedImageUrl}" class="w-32 h-32 object-cover rounded-lg border">`;
+                            var preview = document.getElementById('form-image-preview');
+                            preview.innerHTML = '<img src="' + uploadedImageUrl + '" class="w-32 h-32 object-cover rounded-lg border">';
                         } else {
                             status.innerHTML = '❌ ' + result.message;
                             status.className = 'text-red-500 text-sm mt-2';
@@ -817,45 +851,45 @@
                 }
             });
 
-            // Sobrescrever o save para incluir a URL da imagem
-            const originalSave = window.saveAdminProduct;
+            // Sobrescrever o save
             window.saveAdminProduct = async function() {
-                const btn = document.getElementById('btn-save-product');
-                btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 inline animate-spin"></i> Salvando...`;
+                var btn = document.getElementById('btn-save-product');
+                btn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 inline animate-spin"></i> Salvando...';
                 btn.disabled = true;
 
-                const id = document.getElementById('form-product-id').value.trim();
+                var id = document.getElementById('form-product-id').value.trim();
                 if (!id) {
                     showToast('Informe um ID para o produto.', true);
-                    btn.innerHTML = `<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto`;
+                    btn.innerHTML = '<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto';
                     btn.disabled = false;
                     return;
                 }
 
-                const title = document.getElementById('form-product-title').value.trim() || id;
-                const subtitle = document.getElementById('form-product-subtitle').value.trim();
-                const categoria = document.getElementById('form-product-categoria').value;
-                const ordem = parseInt(document.getElementById('form-product-ordem').value) || 999;
-                const ativo = document.getElementById('form-product-ativo').value;
+                var title = document.getElementById('form-product-title').value.trim() || id;
+                var subtitle = document.getElementById('form-product-subtitle').value.trim();
+                var categoria = document.getElementById('form-product-categoria').value;
+                var ordem = parseInt(document.getElementById('form-product-ordem').value) || 999;
+                var ativo = document.getElementById('form-product-ativo').value;
 
-                const specsText = document.getElementById('form-product-specs').value;
-                const specs = [];
-                specsText.split('\n').forEach(line => {
+                var specsText = document.getElementById('form-product-specs').value;
+                var specs = [];
+                var lines = specsText.split('\n');
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
                     if (line.trim()) {
-                        const parts = line.split(':');
+                        var parts = line.split(':');
                         if (parts.length >= 2) {
                             specs.push({ label: parts[0].trim(), value: parts.slice(1).join(':').trim() });
                         }
                     }
-                });
+                }
 
-                // Usar a URL enviada ou a já existente
-                const image = uploadedImageUrl || (produtos[id]?.image || '');
+                var image = uploadedImageUrl || (produtos[id] ? produtos[id].image : '');
 
-                const productData = { id, title, subtitle, specs, image, categoria, ordem, ativo };
+                var productData = { id: id, title: title, subtitle: subtitle, specs: specs, image: image, categoria: categoria, ordem: ordem, ativo: ativo };
 
                 try {
-                    const response = await fetch(GOOGLE_SHEETS_URL, {
+                    var response = await fetch(GOOGLE_SHEETS_URL, {
                         method: 'POST',
                         body: JSON.stringify({
                             password: SENHA_ADMIN,
@@ -865,7 +899,7 @@
                         headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                     });
 
-                    const result = await response.json();
+                    var result = await response.json();
                     if (result.success) {
                         showToast(result.message);
                         produtos[id] = productData;
@@ -877,7 +911,7 @@
                 } catch (error) {
                     showToast('Erro ao salvar produto.', true);
                 } finally {
-                    btn.innerHTML = `<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto`;
+                    btn.innerHTML = '<i data-lucide="save" class="w-5 h-5 inline"></i> Salvar Produto';
                     btn.disabled = false;
                     lucide.createIcons();
                 }
@@ -887,10 +921,10 @@
         }
 
         async function deleteProduct(productId) {
-            if (!confirm(`Deseja realmente excluir o produto "${produtos[productId]?.title}"?`)) return;
+            if (!confirm('Deseja realmente excluir o produto "' + (produtos[productId] ? produtos[productId].title : '') + '"?')) return;
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                var response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     body: JSON.stringify({
                         password: SENHA_ADMIN,
@@ -900,7 +934,7 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
 
-                const result = await response.json();
+                var result = await response.json();
                 if (result.success) {
                     showToast(result.message);
                     delete produtos[productId];
@@ -918,9 +952,9 @@
         // ADMIN - CONFIGURAÇÕES
         // =============================================
         function renderAdminConfig() {
-            const content = document.getElementById('admin-content');
+            var content = document.getElementById('admin-content');
             
-            const configFields = [
+            var configFields = [
                 { key: 'logo', label: 'Logo do Site', type: 'image' },
                 { key: 'nome_empresa', label: 'Nome da Empresa', type: 'text' },
                 { key: 'whatsapp', label: 'WhatsApp (código + número)', type: 'text' },
@@ -945,7 +979,7 @@
                 { key: 'botao_orcamento', label: 'Botão Orçamento', type: 'text' }
             ];
 
-            let html = `
+            var html = `
                 <div class="flex justify-between items-center mb-4">
                     <p class="text-gray-600 font-medium">Configurações gerais do site</p>
                     <button onclick="saveAdminConfig()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
@@ -955,11 +989,12 @@
                 <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2">
             `;
 
-            configFields.forEach(field => {
-                const value = configs[field.key] || '';
-                let preview = '';
+            for (var i = 0; i < configFields.length; i++) {
+                var field = configFields[i];
+                var value = configs[field.key] || '';
+                var preview = '';
                 if (field.type === 'image' && value) {
-                    preview = `<img src="${value}" class="w-24 h-24 object-contain rounded-lg border mb-2 bg-gray-100">`;
+                    preview = '<img src="' + value + '" class="w-24 h-24 object-contain rounded-lg border mb-2 bg-gray-100">';
                 }
                 
                 html += `
@@ -973,42 +1008,42 @@
                             <div id="cfg-${field.key}-status" class="mt-1 text-sm"></div>
                             <input type="hidden" id="cfg-${field.key}" value="${value}">
                         ` : field.type === 'textarea' 
-                            ? `<textarea id="cfg-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
-                            : `<input type="text" id="cfg-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
+                            ? '<textarea id="cfg-' + field.key + '" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">' + value + '</textarea>'
+                            : '<input type="text" id="cfg-' + field.key + '" value="' + value + '" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">'
                         }
                     </div>
                 `;
-            });
+            }
 
-            html += `</div>`;
+            html += '</div>';
             content.innerHTML = html;
 
-            // Configurar upload de imagem para logo
-            const logoInput = document.getElementById('cfg-logo');
+            // Upload da logo
+            var logoInput = document.getElementById('cfg-logo');
             if (logoInput) {
                 logoInput.addEventListener('change', async function(e) {
-                    const file = e.target.files[0];
+                    var file = e.target.files[0];
                     if (!file) return;
 
-                    const status = document.getElementById('cfg-logo-status');
+                    var status = document.getElementById('cfg-logo-status');
                     status.innerHTML = '⏳ Enviando logo...';
                     status.className = 'text-blue-500 text-sm mt-1';
 
                     try {
-                        const reader = new FileReader();
+                        var reader = new FileReader();
                         reader.onload = async function(event) {
-                            const base64 = event.target.result;
-                            const nomeArquivo = `logo_${Date.now()}.png`;
+                            var base64 = event.target.result;
+                            var nomeArquivo = 'logo_' + Date.now() + '.png';
                             
-                            const result = await uploadImageToDrive(base64, nomeArquivo, 'config');
+                            var result = await uploadImageToDrive(base64, nomeArquivo, 'config');
                             
                             if (result.success) {
                                 document.getElementById('cfg-logo').value = result.url;
                                 status.innerHTML = '✅ Logo enviada!';
                                 status.className = 'text-green-500 text-sm mt-1';
                                 
-                                const preview = document.getElementById('cfg-logo-preview');
-                                preview.innerHTML = `<img src="${result.url}" class="w-24 h-24 object-contain rounded-lg border">`;
+                                var preview = document.getElementById('cfg-logo-preview');
+                                preview.innerHTML = '<img src="' + result.url + '" class="w-24 h-24 object-contain rounded-lg border">';
                             } else {
                                 status.innerHTML = '❌ ' + result.message;
                                 status.className = 'text-red-500 text-sm mt-1';
@@ -1026,7 +1061,7 @@
         }
 
         async function saveAdminConfig() {
-            const configFields = [
+            var configFields = [
                 'logo', 'nome_empresa', 'whatsapp', 'whatsapp_link', 'ano_corrente', 'rodape',
                 'titulo_hero', 'subtitulo_hero', 'badge_hero',
                 'titulo_secao1', 'texto_secao1',
@@ -1037,16 +1072,17 @@
                 'texto_voltar', 'botao_orcamento'
             ];
 
-            const newConfigs = {};
-            configFields.forEach(key => {
-                const el = document.getElementById(`cfg-${key}`);
+            var newConfigs = {};
+            for (var i = 0; i < configFields.length; i++) {
+                var key = configFields[i];
+                var el = document.getElementById('cfg-' + key);
                 if (el) {
                     newConfigs[key] = el.value;
                 }
-            });
+            }
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                var response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     body: JSON.stringify({
                         password: SENHA_ADMIN,
@@ -1056,10 +1092,12 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
 
-                const result = await response.json();
+                var result = await response.json();
                 if (result.success) {
                     showToast(result.message);
-                    configs = { ...configs, ...newConfigs };
+                    for (var key in newConfigs) {
+                        configs[key] = newConfigs[key];
+                    }
                     applyConfigs();
                     await loadData();
                 } else {
@@ -1074,9 +1112,9 @@
         // ADMIN - CORES
         // =============================================
         function renderAdminCores() {
-            const content = document.getElementById('admin-content');
+            var content = document.getElementById('admin-content');
             
-            const corFields = [
+            var corFields = [
                 { key: 'primaria', label: 'Cor Primária' },
                 { key: 'secundaria', label: 'Cor Secundária' },
                 { key: 'fundo', label: 'Cor de Fundo' },
@@ -1086,7 +1124,7 @@
                 { key: 'destaque', label: 'Cor de Destaque' }
             ];
 
-            let html = `
+            var html = `
                 <div class="flex justify-between items-center mb-4">
                     <p class="text-gray-600 font-medium">Cores do site</p>
                     <button onclick="saveAdminCores()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
@@ -1096,8 +1134,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2">
             `;
 
-            corFields.forEach(field => {
-                const value = cores[field.key] || '#000000';
+            for (var i = 0; i < corFields.length; i++) {
+                var field = corFields[i];
+                var value = cores[field.key] || '#000000';
                 html += `
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
@@ -1107,33 +1146,39 @@
                         </div>
                     </div>
                 `;
-            });
+            }
 
-            html += `</div>`;
+            html += '</div>';
             content.innerHTML = html;
 
-            corFields.forEach(field => {
-                const picker = document.getElementById(`cor-${field.key}`);
-                const text = document.getElementById(`cor-text-${field.key}`);
+            for (var i = 0; i < corFields.length; i++) {
+                var field = corFields[i];
+                var picker = document.getElementById('cor-' + field.key);
+                var text = document.getElementById('cor-text-' + field.key);
                 if (picker && text) {
-                    picker.addEventListener('input', () => text.value = picker.value);
-                    text.addEventListener('input', () => picker.value = text.value);
+                    picker.addEventListener('input', function(text) {
+                        return function() { text.value = picker.value; };
+                    }(text));
+                    text.addEventListener('input', function(picker) {
+                        return function() { picker.value = text.value; };
+                    }(picker));
                 }
-            });
+            }
 
             lucide.createIcons();
         }
 
         async function saveAdminCores() {
-            const corFields = ['primaria', 'secundaria', 'fundo', 'texto', 'texto_claro', 'whatsapp', 'destaque'];
-            const newCores = {};
-            corFields.forEach(key => {
-                const el = document.getElementById(`cor-text-${key}`);
+            var corFields = ['primaria', 'secundaria', 'fundo', 'texto', 'texto_claro', 'whatsapp', 'destaque'];
+            var newCores = {};
+            for (var i = 0; i < corFields.length; i++) {
+                var key = corFields[i];
+                var el = document.getElementById('cor-text-' + key);
                 if (el) newCores[key] = el.value;
-            });
+            }
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                var response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     body: JSON.stringify({
                         password: SENHA_ADMIN,
@@ -1143,10 +1188,12 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
 
-                const result = await response.json();
+                var result = await response.json();
                 if (result.success) {
                     showToast(result.message);
-                    cores = { ...cores, ...newCores };
+                    for (var key in newCores) {
+                        cores[key] = newCores[key];
+                    }
                     applyCores();
                 } else {
                     showToast(result.message, true);
@@ -1160,15 +1207,15 @@
         // ADMIN - TEXTOS
         // =============================================
         function renderAdminTextos() {
-            const content = document.getElementById('admin-content');
+            var content = document.getElementById('admin-content');
             
-            const textoFields = [
+            var textoFields = [
                 { key: 'meta_descricao', label: 'Meta Descrição (SEO)', type: 'textarea' },
                 { key: 'titulo_site', label: 'Título do Site (SEO)', type: 'text' },
                 { key: 'footer_texto', label: 'Texto do Footer (SEO)', type: 'textarea' }
             ];
 
-            let html = `
+            var html = `
                 <div class="flex justify-between items-center mb-4">
                     <p class="text-gray-600 font-medium">Textos SEO e metadados</p>
                     <button onclick="saveAdminTextos()" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
@@ -1178,34 +1225,36 @@
                 <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2">
             `;
 
-            textoFields.forEach(field => {
-                const value = textos[field.key] || '';
+            for (var i = 0; i < textoFields.length; i++) {
+                var field = textoFields[i];
+                var value = textos[field.key] || '';
                 html += `
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                         <label class="block text-sm font-bold text-gray-700 mb-1">${field.label}</label>
                         ${field.type === 'textarea' 
-                            ? `<textarea id="txt-${field.key}" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">${value}</textarea>`
-                            : `<input type="text" id="txt-${field.key}" value="${value}" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">`
+                            ? '<textarea id="txt-' + field.key + '" rows="3" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">' + value + '</textarea>'
+                            : '<input type="text" id="txt-' + field.key + '" value="' + value + '" class="w-full p-3 bg-white border border-gray-200 rounded-lg outline-none focus:border-brand-orange">'
                         }
                     </div>
                 `;
-            });
+            }
 
-            html += `</div>`;
+            html += '</div>';
             content.innerHTML = html;
             lucide.createIcons();
         }
 
         async function saveAdminTextos() {
-            const textoFields = ['meta_descricao', 'titulo_site', 'footer_texto'];
-            const newTextos = {};
-            textoFields.forEach(key => {
-                const el = document.getElementById(`txt-${key}`);
+            var textoFields = ['meta_descricao', 'titulo_site', 'footer_texto'];
+            var newTextos = {};
+            for (var i = 0; i < textoFields.length; i++) {
+                var key = textoFields[i];
+                var el = document.getElementById('txt-' + key);
                 if (el) newTextos[key] = el.value;
-            });
+            }
 
             try {
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                var response = await fetch(GOOGLE_SHEETS_URL, {
                     method: 'POST',
                     body: JSON.stringify({
                         password: SENHA_ADMIN,
@@ -1215,10 +1264,12 @@
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' }
                 });
 
-                const result = await response.json();
+                var result = await response.json();
                 if (result.success) {
                     showToast(result.message);
-                    textos = { ...textos, ...newTextos };
+                    for (var key in newTextos) {
+                        textos[key] = newTextos[key];
+                    }
                     applyTextos();
                     applyConfigs();
                 } else {
@@ -1239,19 +1290,20 @@
             if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
 
-                const tlHero = gsap.timeline();
+                var tlHero = gsap.timeline();
                 tlHero.fromTo("#hero-logo", { y: -50, opacity: 0, scale: 0.5 }, { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" })
                       .fromTo("#hero-title", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
                       .fromTo("#hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.4")
                       .fromTo("#hero-badge", { scale: 0, rotation: 0 }, { scale: 1, rotation: -2, duration: 0.6, ease: "back.out(2)" }, "-=0.2");
 
-                const scrollElements = document.querySelectorAll('[data-scroll]');
-                scrollElements.forEach((el) => {
-                    const effect = el.getAttribute('data-scroll');
-                    const delay = parseFloat(el.getAttribute('data-delay') || 0);
+                var scrollElements = document.querySelectorAll('[data-scroll]');
+                for (var i = 0; i < scrollElements.length; i++) {
+                    var el = scrollElements[i];
+                    var effect = el.getAttribute('data-scroll');
+                    var delay = parseFloat(el.getAttribute('data-delay') || 0);
 
-                    let fromVars = { opacity: 0 };
-                    let toVars = { 
+                    var fromVars = { opacity: 0 };
+                    var toVars = { 
                         opacity: 1, 
                         duration: 0.8, 
                         delay: delay,
@@ -1271,7 +1323,7 @@
                     }
 
                     gsap.fromTo(el, fromVars, toVars);
-                });
+                }
             }
         });
     </script>

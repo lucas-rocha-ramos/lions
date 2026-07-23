@@ -437,7 +437,6 @@
                         <img id="edit-preview-img" src="" class="w-20 h-20 object-cover rounded-lg bg-gray-100 border hidden">
                         <input type="file" id="edit-image-file" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
                     </div>
-                    <p class="text-xs text-brand-orange mt-1">A imagem será compactada automaticamente para salvar no Sheets.</p>
                 </div>
             </div>
 
@@ -449,34 +448,12 @@
         </div>
     </div>
 
-
     <script>
         // Inicializa Ícones
         lucide.createIcons();
 
         /* =====================================================================
-           BANCO DE IMAGENS BASE64
-           Cole as strings Base64 vazias abaixo entre as aspas duplas.
-           ===================================================================== */
-        const base64Images = {
-            logo: "", // Cole o Base64 da Logomarca aqui
-            santinho: "",       
-            cartao: "",         
-            colinha: "",        
-            jornal: "",         
-            perfurado: "",      
-            adesivo: "",        
-            pragao: "",         
-            praguinha: "",      
-            bandeira: "",       
-            windbanner: "",     
-            balcao: "",         
-            ventarola: ""       
-        };
-
-        /* =====================================================================
            CONFIGURAÇÃO DO GOOGLE SHEETS
-           Cole a URL gerada pelo Google Apps Script aqui embaixo:
            ===================================================================== */
         const GOOGLE_SHEETS_URL = "COLE_A_URL_DO_APP_SCRIPT_AQUI";
 
@@ -598,11 +575,55 @@
             }
         };
 
-        /* =====================================================================
-           INTEGRAÇÃO COM GOOGLE SHEETS E IMAGENS
-           ===================================================================== */
+        // Objeto global que armazenará as imagens lidas dos arquivos .txt
+        window.base64Images = {};
+
+        // Função para carregar os arquivos .txt do GitHub de forma assíncrona
+        async function loadTxtImages() {
+            const keys = ['logo', 'santinho', 'cartao', 'colinha', 'jornal', 'perfurado', 'adesivo', 'pragao', 'praguinha', 'bandeira', 'windbanner', 'balcao', 'ventarola'];
+
+            function formatBase64(str, prefix = 'data:image/jpeg;base64,') {
+                if (!str || str.trim() === "") return "";
+                let clean = str.trim();
+                if (clean.startsWith("data:image") || clean.startsWith("http")) return clean;
+                return prefix + clean;
+            }
+
+            for (const key of keys) {
+                try {
+                    // Tenta ler o arquivo correspondente (ex: logo.txt, santinho.txt, etc.)
+                    const response = await fetch(`${key}.txt`);
+                    if (response.ok) {
+                        const text = await response.text();
+                        window.base64Images[key] = formatBase64(text);
+                    }
+                } catch (e) {
+                    // Arquivo .txt ainda não criado para este item, ignora silenciosamente
+                }
+            }
+
+            // Aplicação na Logomarca
+            if (window.base64Images.logo) {
+                const logoContainer = document.getElementById('hero-logo');
+                if (logoContainer) {
+                    logoContainer.innerHTML = `<img src="${window.base64Images.logo}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
+                }
+            }
+
+            // Aplicação nos Produtos da Home
+            Object.keys(window.base64Images).forEach(key => {
+                if (key === 'logo') return;
+                const imgElement = document.getElementById(`img-${key}`);
+                if (imgElement && window.base64Images[key]) {
+                    imgElement.src = window.base64Images[key];
+                }
+            });
+        }
+
+        // Executa o carregamento das imagens em txt
+        loadTxtImages();
         
-        // Busca os dados da nuvem para sobrescrever o padrão
+        // Busca os dados do Google Sheets
         async function fetchGoogleSheetsData() {
             if (!GOOGLE_SHEETS_URL || GOOGLE_SHEETS_URL === "COLE_A_URL_DO_APP_SCRIPT_AQUI") return;
             try {
@@ -614,13 +635,11 @@
                         if (remoteData[key].title) {
                             productsData[key] = remoteData[key];
                             if (remoteData[key].image && remoteData[key].image.trim() !== "") {
-                                if(typeof base64Images !== 'undefined') {
-                                    base64Images[key] = remoteData[key].image;
-                                }
+                                window.base64Images[key] = remoteData[key].image;
                             }
                         }
                     });
-                    loadBase64Images();
+                    loadTxtImages();
                     updateUICards();
                 }
             } catch (error) {
@@ -628,50 +647,16 @@
             }
         }
 
-        // Atualiza os títulos no HTML (Home) de acordo com o Banco de Dados
         function updateUICards() {
             Object.keys(productsData).forEach(key => {
                 const card = document.querySelector(`[onclick="openProduct('${key}')"]`);
                 if (card) {
                     const h4 = card.querySelector('h4');
-                    // Como alguns cards (como balcao e ventarola) têm layouts levemente diferentes
                     if(h4) h4.innerText = productsData[key].title;
                 }
             });
         }
 
-        function loadBase64Images() {
-            if (typeof base64Images === 'undefined') {
-                console.error("Aviso: O arquivo images.js não carregou. Verifique se há algum erro de sintaxe (aspas/vírgulas faltando) dentro dele.");
-                return;
-            }
-
-            // Função inteligente para corrigir Base64 colado sem o prefixo 'data:image...'
-            function formatBase64(str) {
-                if (!str || str.trim() === "") return "";
-                if (str.startsWith("data:image") || str.startsWith("http")) return str;
-                return "data:image/jpeg;base64," + str.trim();
-            }
-
-            // Logomarca principal
-            if (base64Images.logo && base64Images.logo.trim() !== "") {
-                const logoContainer = document.getElementById('hero-logo');
-                if (logoContainer) {
-                    logoContainer.innerHTML = `<img src="${formatBase64(base64Images.logo)}" alt="Lion's Comunicação Visual" class="w-full h-full object-contain">`;
-                }
-            }
-
-            // Imagens dos produtos
-            Object.keys(base64Images).forEach(key => {
-                if (key === 'logo') return;
-                const imgElement = document.getElementById(`img-${key}`);
-                if (imgElement && base64Images[key] && base64Images[key].trim() !== "") {
-                    imgElement.src = formatBase64(base64Images[key]);
-                }
-            });
-        }
-        
-        loadBase64Images();
         fetchGoogleSheetsData();
 
         /* =====================================================================
@@ -688,16 +673,9 @@
             document.getElementById('detail-title').innerText = data.title;
             document.getElementById('detail-subtitle').innerText = data.subtitle;
             
-            // Função rápida para corrigir o formato da imagem nos detalhes
-            function formatBase64(str) {
-                if (!str || str.trim() === "") return "";
-                if (str.startsWith("data:image") || str.startsWith("http")) return str;
-                return "data:image/jpeg;base64," + str.trim();
-            }
-
             const detailImage = document.getElementById('detail-image');
-            if (typeof base64Images !== 'undefined' && base64Images[productId] && base64Images[productId].trim() !== "") {
-                detailImage.src = formatBase64(base64Images[productId]);
+            if (window.base64Images[productId] && window.base64Images[productId].trim() !== "") {
+                detailImage.src = window.base64Images[productId];
             } else {
                 const homeImgElement = document.getElementById(`img-${productId}`);
                 detailImage.src = homeImgElement ? homeImgElement.src : 'https://placehold.co/600x600/f4f4f5/f26522?text=FOTO';
@@ -813,7 +791,7 @@
                 const item = document.createElement('div');
                 item.className = "flex items-center justify-between p-4 bg-gray-50 border border-gray-100 rounded-xl mb-3 hover:border-brand-orange transition-colors";
                 
-                let imgSrc = (typeof base64Images !== 'undefined' && base64Images[key]) ? base64Images[key] : 'https://placehold.co/100x100/eee/999?text=IMG';
+                let imgSrc = window.base64Images[key] || 'https://placehold.co/100x100/eee/999?text=IMG';
                 
                 item.innerHTML = `
                     <div class="flex items-center gap-4">
@@ -860,15 +838,14 @@
             document.getElementById('edit-specs').value = specsText;
             
             const imgPreview = document.getElementById('edit-preview-img');
-            if (typeof base64Images !== 'undefined' && base64Images[productId]) {
-                imgPreview.src = base64Images[productId];
+            if (window.base64Images[productId]) {
+                imgPreview.src = window.base64Images[productId];
                 imgPreview.classList.remove('hidden');
             } else {
                 imgPreview.classList.add('hidden');
             }
         }
 
-        // Compressão de Imagem
         document.getElementById('edit-image-file').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -917,7 +894,7 @@
                 }
             });
 
-            const finalImage = newBase64Image !== "" ? newBase64Image : (typeof base64Images !== 'undefined' ? base64Images[id] : "");
+            const finalImage = newBase64Image !== "" ? newBase64Image : (window.base64Images[id] || "");
 
             const payload = {
                 password: currentAdminPassword,
@@ -943,9 +920,9 @@
                 if (result.success) {
                     showToast(result.message);
                     productsData[id] = payload.product;
-                    if(typeof base64Images !== 'undefined') base64Images[id] = finalImage;
+                    window.base64Images[id] = finalImage;
                     
-                    loadBase64Images();
+                    loadTxtImages();
                     updateUICards();
                     
                     setTimeout(() => backToDashboard(), 1000);
@@ -966,9 +943,8 @@
             }
         }
 
-
         /* =====================================================================
-           ANIMAÇÕES GSAP & SCROLLTRIGGER (LANDING PAGE)
+           ANIMAÇÕES GSAP & SCROLLTRIGGER
            ===================================================================== */
         gsap.registerPlugin(ScrollTrigger);
 
@@ -1005,7 +981,6 @@
 
             gsap.fromTo(el, fromVars, toVars);
         });
-
     </script>
 </body>
 </html>

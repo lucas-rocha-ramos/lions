@@ -5,80 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">Lion's Comunicação Visual - Eleições 2026</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- GSAP para Animações -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { overflow-x: hidden; scroll-behavior: smooth; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .clip-path-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
         .clip-path-diagonal-reverse { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
-        
         .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .lazy-load {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .lazy-load.loaded {
-            opacity: 1;
-        }
     </style>
 </head>
 <body class="font-sans antialiased" id="app-body">
 
-    <!-- ==========================================
-         VIEW PRINCIPAL (LANDING PAGE)
-         ========================================== -->
     <div id="home-view">
-        
         <header id="hero-header" class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden clip-path-diagonal">
             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
-            
-            <div id="hero-logo" class="z-10 mb-8 w-48 h-48 md:w-64 md:h-64">
-                <!-- Logo será injetado via JS -->
-            </div>
-
+            <div id="hero-logo" class="z-10 mb-8 w-48 h-48 md:w-64 md:h-64"></div>
             <div class="z-10 text-center px-4">
                 <h1 id="hero-title" class="text-5xl md:text-7xl font-black tracking-tighter mb-2">LION'S</h1>
                 <h2 id="hero-subtitle" class="text-2xl md:text-4xl font-bold tracking-widest mb-6">COMUNICAÇÃO VISUAL</h2>
-                <div id="hero-badge" class="inline-block font-bold text-xl md:text-2xl px-6 py-2 rounded-full shadow-lg transform -rotate-2">
-                    ELEIÇÕES 2026
-                </div>
+                <div id="hero-badge" class="inline-block font-bold text-xl md:text-2xl px-6 py-2 rounded-full shadow-lg transform -rotate-2">ELEIÇÕES 2026</div>
             </div>
-
-            <div class="absolute bottom-12 z-10 animate-bounce">
-                <i data-lucide="chevron-down" class="w-10 h-10 opacity-70"></i>
-            </div>
+            <div class="absolute bottom-12 z-10 animate-bounce"><i data-lucide="chevron-down" class="w-10 h-10 opacity-70"></i></div>
         </header>
 
-        <!-- Seção 1 -->
         <section id="secao1" class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
             <h3 id="secao1-titulo" class="text-3xl md:text-5xl font-bold mb-6" data-scroll="fade-up">Sua campanha merece o melhor.</h3>
-            <p id="secao1-texto" class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">
-                Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura.
-            </p>
+            <p id="secao1-texto" class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" data-scroll="fade-up">Oferecemos uma linha completa de materiais gráficos e de comunicação visual para impulsionar a sua candidatura.</p>
         </section>
 
-        <!-- Seção 2: Materiais -->
         <section id="secao-materiais" class="py-24 bg-white clip-path-diagonal-reverse relative z-10 -mt-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 pt-20">
                 <div class="mb-16 border-l-4 border-brand-orange pl-4" data-scroll="fade-right">
@@ -89,7 +53,6 @@
             </div>
         </section>
 
-        <!-- Seção 3: Adesivos -->
         <section id="secao-adesivos" class="py-24 bg-brand-dark text-white relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="mb-16 border-l-4 border-brand-orange pl-4 text-right ml-auto flex flex-col items-end" data-scroll="fade-left">
@@ -100,37 +63,28 @@
             </div>
         </section>
 
-        <!-- Seção 4: Grandes Formatos -->
         <section id="secao-grandes-formatos" class="py-24 bg-gray-100 overflow-hidden relative">
             <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
                 <div class="text-center mb-20" data-scroll="fade-up">
-                    <h2 id="titulo-grandes-formatos" class="text-4xl md:text-5xl font-black uppercase inline-block relative">
-                        Grandes Formatos
-                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brand-orange"></div>
-                    </h2>
+                    <h2 id="titulo-grandes-formatos" class="text-4xl md:text-5xl font-black uppercase inline-block relative">Grandes Formatos<div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brand-orange"></div></h2>
                     <p id="subtitulo-grandes-formatos" class="text-gray-500 mt-6">Selecione o material desejado.</p>
                 </div>
                 <div id="grid-grandes-formatos" class="flex flex-col lg:flex-row gap-12 items-center justify-center"></div>
             </div>
         </section>
 
-        <!-- CTA -->
         <section id="secao-cta" class="py-24 bg-brand-orange text-white text-center px-6 clip-path-diagonal-reverse -mt-10 relative z-20">
             <div class="max-w-4xl mx-auto pt-10">
                 <i data-lucide="printer" class="w-16 h-16 mx-auto mb-6 opacity-90"></i>
                 <h2 id="cta-titulo" class="text-4xl md:text-6xl font-black mb-6 uppercase" data-scroll="scale-up">Pronto para imprimir sua vitória?</h2>
                 <p id="cta-texto" class="text-xl md:text-2xl mb-10 text-white/90">Faça um orçamento sem compromisso.</p>
                 <a id="cta-botao" href="#" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark text-white font-bold text-xl px-10 py-5 rounded-full hover:bg-gray-800 transform hover:scale-105 transition-all shadow-2xl">
-                    <i data-lucide="message-circle" class="w-6 h-6"></i>
-                    Falar com Consultor
+                    <i data-lucide="message-circle" class="w-6 h-6"></i> Falar com Consultor
                 </a>
             </div>
         </section>
     </div>
 
-    <!-- ==========================================
-         VIEW DE DETALHE DO PRODUTO
-         ========================================== -->
     <div id="product-view" class="hidden min-h-screen bg-gray-50 pt-10 pb-24 fade-in">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             <button onclick="closeProduct()" class="group flex items-center gap-2 font-bold text-lg mb-10 hover:text-brand-orange transition-colors">
@@ -148,10 +102,7 @@
                     <h2 id="detail-title" class="text-4xl font-black uppercase mb-2">Nome do Produto</h2>
                     <p id="detail-subtitle" class="text-xl text-gray-500 mb-8 font-medium">Subtítulo.</p>
                     <div class="space-y-6 flex-1">
-                        <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2">
-                            <i data-lucide="list-checks" class="text-brand-orange"></i>
-                            Especificações Técnicas
-                        </h3>
+                        <h3 class="text-xl font-bold border-b pb-2 flex items-center gap-2"><i data-lucide="list-checks" class="text-brand-orange"></i> Especificações Técnicas</h3>
                         <ul id="detail-specs" class="space-y-4"></ul>
                     </div>
                     <div class="mt-10 pt-8 border-t">
@@ -165,7 +116,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer id="site-footer" class="py-12 text-center pb-24 md:pb-12 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div id="footer-logo" class="flex justify-center items-center gap-4 mb-6"></div>
@@ -176,18 +126,13 @@
         </button>
     </footer>
 
-    <!-- WhatsApp Float -->
     <a id="whatsapp-float" href="#" target="_blank" class="fixed bottom-6 right-6 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-110 transition-transform flex items-center justify-center" style="background-color: #25D366;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </a>
 
-    <!-- ==========================================
-         PAINEL DE ADMINISTRAÇÃO
-         ========================================== -->
     <div id="admin-overlay" class="fixed inset-0 bg-black/80 z-50 hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div id="admin-toast" class="absolute top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl font-bold transition-all duration-300 opacity-0 -translate-y-10 z-[60]">Mensagem</div>
 
-        <!-- Login -->
         <div id="admin-login-modal" class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-sm hidden transform transition-all duration-300 flex-col">
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -200,30 +145,17 @@
             <button onclick="closeAdminModal()" class="w-full text-gray-500 py-2 hover:text-brand-dark transition-colors text-sm">Cancelar</button>
         </div>
 
-        <!-- Dashboard -->
         <div id="admin-dashboard-modal" class="bg-white p-6 md:p-8 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] hidden flex-col transform transition-all duration-300">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h3 class="text-2xl font-black flex items-center gap-2">
-                    <i data-lucide="settings" class="text-brand-orange"></i> Painel de Controle
-                </h3>
+                <h3 class="text-2xl font-black flex items-center gap-2"><i data-lucide="settings" class="text-brand-orange"></i> Painel de Controle</h3>
                 <button onclick="closeAdminModal()" class="text-gray-500 hover:text-red-500 p-2"><i data-lucide="x"></i></button>
             </div>
-            
             <div class="flex gap-2 mb-4 border-b overflow-x-auto">
-                <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap" data-tab="produtos">
-                    <i data-lucide="package" class="w-4 h-4 inline"></i> Produtos
-                </button>
-                <button onclick="showAdminTab('config')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="config">
-                    <i data-lucide="settings" class="w-4 h-4 inline"></i> Configurações
-                </button>
-                <button onclick="showAdminTab('cores')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="cores">
-                    <i data-lucide="palette" class="w-4 h-4 inline"></i> Cores
-                </button>
-                <button onclick="showAdminTab('textos')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="textos">
-                    <i data-lucide="type" class="w-4 h-4 inline"></i> Textos
-                </button>
+                <button onclick="showAdminTab('produtos')" class="tab-btn px-4 py-2 font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap" data-tab="produtos"><i data-lucide="package" class="w-4 h-4 inline"></i> Produtos</button>
+                <button onclick="showAdminTab('config')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="config"><i data-lucide="settings" class="w-4 h-4 inline"></i> Configurações</button>
+                <button onclick="showAdminTab('cores')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="cores"><i data-lucide="palette" class="w-4 h-4 inline"></i> Cores</button>
+                <button onclick="showAdminTab('textos')" class="tab-btn px-4 py-2 font-bold text-gray-500 hover:text-brand-dark whitespace-nowrap" data-tab="textos"><i data-lucide="type" class="w-4 h-4 inline"></i> Textos</button>
             </div>
-
             <div class="overflow-y-auto flex-1 no-scrollbar pr-2" id="admin-content"></div>
         </div>
     </div>
@@ -244,32 +176,6 @@
         var produtos = {};
         var currentAdminPassword = "";
         var editingProductId = null;
-
-        // =============================================
-        // FUNÇÃO PARA UPLOAD DE IMAGEM
-        // =============================================
-        async function uploadImageToDrive(imageData, nomeArquivo, tipo) {
-            tipo = tipo || 'produto';
-            try {
-                var response = await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        password: SENHA_ADMIN,
-                        action: 'uploadImage',
-                        imageData: imageData,
-                        nomeArquivo: nomeArquivo,
-                        tipo: tipo
-                    }),
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-                });
-
-                var result = await response.json();
-                return result;
-            } catch (error) {
-                console.error('Erro no upload:', error);
-                return { success: false, message: error.toString() };
-            }
-        }
 
         // =============================================
         // CARREGAR DADOS
@@ -324,15 +230,8 @@
             var numero = configs.whatsapp || '5500000000000';
             var linkBase = configs.whatsapp_link || 'https://wa.me/';
             
-            var whatsappElements = document.querySelectorAll('[id^="whatsapp"]');
-            for (var i = 0; i < whatsappElements.length; i++) {
-                var el = whatsappElements[i];
-                if (el.tagName === 'A') {
-                    el.href = linkBase + numero;
-                }
-            }
-            
             document.getElementById('cta-botao').href = linkBase + numero;
+            document.getElementById('whatsapp-float').href = linkBase + numero;
 
             document.getElementById('cta-titulo').textContent = configs.titulo_cta || 'Pronto para imprimir sua vitória?';
             document.getElementById('cta-texto').textContent = configs.texto_cta || 'Faça um orçamento sem compromisso.';
@@ -461,8 +360,7 @@
                         <div class="aspect-[3/4] bg-gray-200 rounded-xl mb-4 overflow-hidden relative">
                             <img src="${prod.image || 'https://placehold.co/400x533/f4f4f5/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 lazy-load"
-                                 loading="lazy">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <h4 class="text-xl font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">${prod.title}</h4>
                         <p class="text-sm text-gray-600">Ver detalhes →</p>
@@ -474,8 +372,7 @@
                         <div class="h-48 w-full bg-gray-700 relative overflow-hidden">
                             <img src="${prod.image || 'https://placehold.co/600x300/1f2937/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform lazy-load"
-                                 loading="lazy">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform">
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-center">
                             <div class="flex items-center gap-2 mb-2 group-hover:text-brand-orange text-white transition-colors">
@@ -492,8 +389,7 @@
                         <div class="relative w-full aspect-square mb-6 mx-auto bg-white rounded-full shadow-xl flex items-center justify-center p-8 overflow-hidden transform group-hover:-translate-y-4 transition-all duration-500 ring-4 ring-transparent group-hover:ring-brand-orange">
                             <img src="${prod.image || 'https://placehold.co/400x400/fff/f26522?text=' + prod.title}" 
                                  alt="${prod.title}" 
-                                 class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform lazy-load"
-                                 loading="lazy">
+                                 class="object-contain w-full h-full scale-90 group-hover:scale-100 transition-transform">
                         </div>
                         <h3 class="text-3xl font-black text-brand-dark group-hover:text-brand-orange transition-colors">${prod.title}</h3>
                         <span class="inline-block mt-2 text-sm font-bold text-gray-500 bg-gray-200 px-4 py-1 rounded-full">Ver detalhes</span>
@@ -510,22 +406,6 @@
                     div.innerHTML = layout;
                     grid.appendChild(div);
                 }
-            }
-
-            if (gridMateriais.children.length === 0) {
-                gridMateriais.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Nenhum material cadastrado.</div>';
-            }
-            if (gridAdesivos.children.length === 0) {
-                gridAdesivos.innerHTML = '<div class="col-span-full text-center text-gray-400 py-10">Nenhum adesivo cadastrado.</div>';
-            }
-            if (gridGrandes.children.length === 0) {
-                gridGrandes.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Nenhum grande formato cadastrado.</div>';
-            }
-
-            // Lazy load images
-            var lazyImages = document.querySelectorAll('.lazy-load');
-            for (var i = 0; i < lazyImages.length; i++) {
-                lazyImages[i].classList.add('loaded');
             }
 
             lucide.createIcons();
@@ -798,12 +678,13 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1">Imagem</label>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Imagem (upload direto)</label>
                             ${prod.image ? '<img src="' + prod.image + '" class="w-32 h-32 object-cover rounded-lg mb-2 border">' : ''}
                             <input type="file" id="form-product-image" accept="image/*" 
                                    class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-orange/10 file:text-brand-orange hover:file:bg-brand-orange/20">
                             <div id="form-image-preview" class="mt-2"></div>
                             <div id="form-upload-status" class="mt-2 text-sm"></div>
+                            <input type="hidden" id="form-image-base64" value="${prod.image || ''}">
                         </div>
 
                         <button onclick="saveAdminProduct()" id="btn-save-product" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 transition-colors">
@@ -813,42 +694,31 @@
                 </div>
             `;
 
-            var uploadedImageUrl = '';
-            var self = this;
-
-            document.getElementById('form-product-image').addEventListener('change', async function(e) {
+            // Upload de imagem como Base64
+            document.getElementById('form-product-image').addEventListener('change', function(e) {
                 var file = e.target.files[0];
                 if (!file) return;
 
                 var status = document.getElementById('form-upload-status');
-                status.innerHTML = '⏳ Enviando imagem...';
+                status.innerHTML = '⏳ Processando imagem...';
                 status.className = 'text-blue-500 text-sm mt-2';
 
-                try {
-                    var reader = new FileReader();
-                    reader.onload = async function(event) {
-                        var base64 = event.target.result;
-                        var nomeArquivo = (document.getElementById('form-product-id').value || 'produto') + '_' + Date.now() + '.png';
-                        
-                        var result = await uploadImageToDrive(base64, nomeArquivo, 'produto');
-                        
-                        if (result.success) {
-                            uploadedImageUrl = result.url;
-                            status.innerHTML = '✅ Imagem enviada com sucesso!';
-                            status.className = 'text-green-500 text-sm mt-2';
-                            
-                            var preview = document.getElementById('form-image-preview');
-                            preview.innerHTML = '<img src="' + uploadedImageUrl + '" class="w-32 h-32 object-cover rounded-lg border">';
-                        } else {
-                            status.innerHTML = '❌ ' + result.message;
-                            status.className = 'text-red-500 text-sm mt-2';
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                } catch (error) {
-                    status.innerHTML = '❌ Erro ao enviar: ' + error.message;
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var base64 = event.target.result;
+                    document.getElementById('form-image-base64').value = base64;
+                    
+                    var preview = document.getElementById('form-image-preview');
+                    preview.innerHTML = '<img src="' + base64 + '" class="w-32 h-32 object-cover rounded-lg border">';
+                    
+                    status.innerHTML = '✅ Imagem carregada!';
+                    status.className = 'text-green-500 text-sm mt-2';
+                };
+                reader.onerror = function() {
+                    status.innerHTML = '❌ Erro ao ler a imagem.';
                     status.className = 'text-red-500 text-sm mt-2';
-                }
+                };
+                reader.readAsDataURL(file);
             });
 
             // Sobrescrever o save
@@ -884,7 +754,7 @@
                     }
                 }
 
-                var image = uploadedImageUrl || (produtos[id] ? produtos[id].image : '');
+                var image = document.getElementById('form-image-base64').value || (produtos[id] ? produtos[id].image : '');
 
                 var productData = { id: id, title: title, subtitle: subtitle, specs: specs, image: image, categoria: categoria, ordem: ordem, ativo: ativo };
 
@@ -1018,42 +888,33 @@
             html += '</div>';
             content.innerHTML = html;
 
-            // Upload da logo
+            // Upload da logo como Base64
             var logoInput = document.getElementById('cfg-logo');
             if (logoInput) {
-                logoInput.addEventListener('change', async function(e) {
+                logoInput.addEventListener('change', function(e) {
                     var file = e.target.files[0];
                     if (!file) return;
 
                     var status = document.getElementById('cfg-logo-status');
-                    status.innerHTML = '⏳ Enviando logo...';
+                    status.innerHTML = '⏳ Processando logo...';
                     status.className = 'text-blue-500 text-sm mt-1';
 
-                    try {
-                        var reader = new FileReader();
-                        reader.onload = async function(event) {
-                            var base64 = event.target.result;
-                            var nomeArquivo = 'logo_' + Date.now() + '.png';
-                            
-                            var result = await uploadImageToDrive(base64, nomeArquivo, 'config');
-                            
-                            if (result.success) {
-                                document.getElementById('cfg-logo').value = result.url;
-                                status.innerHTML = '✅ Logo enviada!';
-                                status.className = 'text-green-500 text-sm mt-1';
-                                
-                                var preview = document.getElementById('cfg-logo-preview');
-                                preview.innerHTML = '<img src="' + result.url + '" class="w-24 h-24 object-contain rounded-lg border">';
-                            } else {
-                                status.innerHTML = '❌ ' + result.message;
-                                status.className = 'text-red-500 text-sm mt-1';
-                            }
-                        };
-                        reader.readAsDataURL(file);
-                    } catch (error) {
-                        status.innerHTML = '❌ Erro: ' + error.message;
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        var base64 = event.target.result;
+                        document.getElementById('cfg-logo').value = base64;
+                        
+                        var preview = document.getElementById('cfg-logo-preview');
+                        preview.innerHTML = '<img src="' + base64 + '" class="w-24 h-24 object-contain rounded-lg border">';
+                        
+                        status.innerHTML = '✅ Logo carregada! Clique em "Salvar Tudo" para salvar.';
+                        status.className = 'text-green-500 text-sm mt-1';
+                    };
+                    reader.onerror = function() {
+                        status.innerHTML = '❌ Erro ao ler o arquivo.';
                         status.className = 'text-red-500 text-sm mt-1';
-                    }
+                    };
+                    reader.readAsDataURL(file);
                 });
             }
 
